@@ -5,31 +5,32 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+// import { Input, TextArea, FormBtn } from "../components/Form";
+import { TextArea, FormBtn } from "../components/Form";
 
-function Books() {
+function Tasks() {
   // Setting our component's initial state
-  const [books, setBooks] = useState([])
+  const [tasks, setTasks] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  // Load all books and store them with setBooks
+  // Load all tasks and store them with setTasks
   useEffect(() => {
-    loadBooks()
+    loadTasks()
   }, [])
 
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
+  // Loads all tasks and sets them to tasks
+  function loadTasks() {
+    API.getTasks()
       .then(res => 
-        setBooks(res.data)
+        setTasks(res.data)
       )
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
+  // Deletes a task from the database with a given id, then reloads tasks from the db
+  function deleteTask(id) {
+    API.deleteTask(id)
+      .then(res => loadTasks())
       .catch(err => console.log(err));
   }
 
@@ -39,17 +40,18 @@ function Books() {
     setFormObject({...formObject, [name]: value})
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveTask method to save the task data
+  // Then reload tasks from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title && formObject.author) {
-      API.saveBook({
-        title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis
+
+    // if (formObject.user && formObject.taskname) {
+    if (formObject.taskname) {
+      API.saveTask({
+        // user: formObject.user,
+        taskname: formObject.taskname
       })
-        .then(res => loadBooks())
+        .then(res => loadTasks())
         .catch(err => console.log(err));
     }
   };
@@ -59,46 +61,43 @@ function Books() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>What Task Needs to be Added?</h1>
             </Jumbotron>
             <form>
-              <Input
+              {/* <Input
                 onChange={handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
+                name="user"
+                placeholder="User that is assigned this task"
+              /> */}
               <TextArea
                 onChange={handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="taskname"
+                placeholder="Task description"
               />
               <FormBtn
-                disabled={!(formObject.author && formObject.title)}
+                // disabled={!(formObject.user && formObject.taskname)}
+                disabled={!(formObject.taskname)}
                 onClick={handleFormSubmit}
               >
-                Submit Book
+                Submit Task
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Tasks On Overall List</h1>
             </Jumbotron>
-            {books.length ? (
+            {tasks.length ? (
               <List>
-                {books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {tasks.map(task => (
+                  <ListItem key={task._id}>
+                    <Link to={"/tasks/" + task._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {/* {task.taskname} assigned to {task.user} */}
+                        {task.taskname} assigned to 
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => deleteTask(task._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -112,4 +111,4 @@ function Books() {
   }
 
 
-export default Books;
+export default Tasks;
