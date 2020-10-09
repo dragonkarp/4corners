@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap"
 
-function Login() {
+function CreateAccount() {
   return (
     <Form>
       <Form.Group controlId="formBasicEmail">
@@ -13,12 +13,19 @@ function Login() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+
+
       <Button variant="primary" type="submit">
-        Login
+        CreateAccount
       </Button>
     </Form>
     
   );
 }
 
-export default Login;
+export default CreateAccount;

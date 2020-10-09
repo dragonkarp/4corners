@@ -1,12 +1,9 @@
 const express = require("express");
 const dotenv = require('dotenv'); 
 dotenv.config()
-
-
 // // const passport = require('./passport');
 // const passport = require('./passportConfig');
 // const session = require('express-session');
-
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -20,10 +17,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-
-
-
 
 // app.use(
 // 	session({

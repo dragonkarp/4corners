@@ -21,6 +21,9 @@ function Nav() {
         <li className="nav-item">
           <a className="nav-link" href="/Login">Login</a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/create">CreateAccount</a>
+        </li>
       </ul>
     </nav>
     </Router>

@@ -8,6 +8,8 @@ import Person from "./pages/Person";
 import Team from "./pages/Team";
 import Resources from "./pages/Resources";
 import Login from "./pages/Login";
+import CreateAccount from "./pages/CreateAccount";
+
 
 function App() {
   return (
@@ -20,20 +22,22 @@ function App() {
               <Route exact path="/team" component={Team} />
               <Route exact path="/resources" component={Resources} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/create" component={CreateAccount} />
               {/* <Route path="/404" component={NoMatchPage} />
               <Redirect to="/404" /> */}
 
           <Route exact path={["/", "/tasks"]}>
-          
             <Tasks />
           </Route>
 
           <Route exact path="/tasks/:id">
             <Detail />
           </Route>
+
           <Route>
             <NoMatch />
           </Route>
+          
         </Switch>
       </div>
     </Router>
