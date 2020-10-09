@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 // import { Input, TextArea, FormBtn } from "../components/Form";
-import { TextArea, FormBtn } from "../components/Form";
+// import { TextArea, FormBtn } from "../components/Form";
 
-function Tasks() {
+function Person() {
   // Setting our component's initial state
   const [tasks, setTasks] = useState([])
   const [formObject, setFormObject] = useState({})
@@ -59,33 +59,9 @@ function Tasks() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-4">
             <Jumbotron>
-              <h1>What Task Needs to be Added?</h1>
-            </Jumbotron>
-            <form>
-              {/* <Input
-                onChange={handleInputChange}
-                name="user"
-                placeholder="User that is assigned this task"
-              /> */}
-              <TextArea
-                onChange={handleInputChange}
-                name="taskname"
-                placeholder="Task description"
-              />
-              <FormBtn
-                // disabled={!(formObject.user && formObject.taskname)}
-                disabled={!(formObject.taskname)}
-                onClick={handleFormSubmit}
-              >
-                Submit Task
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Tasks On Overall List</h1>
+              <h1>Tasks Assigned to You</h1>
             </Jumbotron>
             {tasks.length ? (
               <List>
@@ -105,10 +81,39 @@ function Tasks() {
               <h3>No Results to Display</h3>
             )}
           </Col>
+          <Col size="md-4 sm-12">
+            <Jumbotron>
+              <h1>Tasks Assigned to Others</h1>
+            </Jumbotron>
+            {tasks.length ? (
+              <List>
+                {tasks.map(task => (
+                  <ListItem key={task._id}>
+                    <Link to={"/tasks/" + task._id}>
+                      <strong>
+                        {task.taskname} assigned to <button className="userLabel">{task.user}</button>
+                        
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => deleteTask(task._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+          <Col size="md-4 sm-12">
+            <Jumbotron>
+              <h1>Chat Container</h1>
+            </Jumbotron>
+           
+          </Col>
+
         </Row>
       </Container>
     );
   }
 
 
-export default Tasks;
+export default Person;

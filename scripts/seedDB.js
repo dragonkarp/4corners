@@ -10,28 +10,33 @@ mongoose.connect(
 
 const taskSeed = [
   {
-    // user: "Michael Li",
+    user: "Michael Li",
     taskname: "livechat",
+    comments: "",
     date: new Date(Date.now())
   },
   {
-    // user: "Heribert Villazana",
+    user: "Heribert Villazana",
     taskname: "resources page",
+    comments: "",
     date: new Date(Date.now())
   },
   {
-    // user: "Daria Nadarajah",
+    user: "Daria Nadarajah",
     taskname: "realtime updates",
+    comments: "",
     date: new Date(Date.now())
   },
   {
-    // user: "Nargiza Boronchieva",
+    user: "Nargiza Boronchieva",
     taskname: "login page",
+    comments: "",
     date: new Date(Date.now())
   },
   {
-    // user: "Margaret Seiche",
+    user: "Margaret Seiche",
     taskname: "seed database",
+    comments: "",
     date: new Date(Date.now())
   }
 ];
