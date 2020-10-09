@@ -1,4 +1,5 @@
 const express = require("express");
+<<<<<<< HEAD
 
 
 
@@ -11,6 +12,10 @@ const express = require("express");
 
 
 
+=======
+const passport = require('./passport')
+const session = require('express-session')
+>>>>>>> 7c44f4ecc2230bfc89caf9d4d1e10e2261035d45
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -25,6 +30,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+<<<<<<< HEAD
 
 
 
@@ -44,6 +50,19 @@ if (process.env.NODE_ENV === "production") {
 
 
 
+=======
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'anything',
+		resave: false,
+		saveUninitialized: false
+	})
+)
+
+//set up
+app.use(passport.initialize())
+app.use(passport.session());
+>>>>>>> 7c44f4ecc2230bfc89caf9d4d1e10e2261035d45
 // Add routes, both API and view
 app.use(routes);
 
