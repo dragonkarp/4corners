@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const dotenv = require('dotenv'); 
+dotenv.config()
 
 // This file empties the Tasks collection and inserts the tasks below
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/reacttasklist"
-);
+mongoose.connect(process.env.MONGODB_URI,  {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+});
 
 const taskSeed = [
   {
