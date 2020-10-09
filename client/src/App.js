@@ -4,6 +4,10 @@ import Tasks from "./pages/Tasks";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Person from "./pages/Person";
+import Team from "./pages/Team";
+import Resources from "./pages/Resources";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -11,6 +15,13 @@ function App() {
       <div>
         <Nav />
         <Switch>
+       
+              <Route exact path="/person" component={Person} />
+              <Route exact path="/team" component={Team} />
+              <Route exact path="/resources" component={Resources} />
+              <Route exact path="/login" component={Login} />
+              {/* <Route path="/404" component={NoMatchPage} />
+              <Redirect to="/404" /> */}
 
           <Route exact path={["/", "/tasks"]}>
           

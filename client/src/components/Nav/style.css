@@ -1,0 +1,12 @@
+nav {
+    color: white;
+}
+
+.nav-tabs {
+    float: right;
+    list-style-type: none;
+}
+
+a.nav-link {
+    color: white;
+}
