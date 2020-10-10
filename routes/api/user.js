@@ -5,7 +5,8 @@ const userController = require("../../controllers/userController");
 router.route("/login/:id")
   .get(userController.findByEmail);
 
-
+router.route("/create")
+  .post(userController.createUser);
 
 
 // This will be used for the create user page. 
@@ -19,6 +20,6 @@ router.route("/login/:id")
 //   .route("/:id")
 //   .get(userController.findById)
 //   .put(userController.update)
-//   .delete(userController.remove);
+//   .delete(userController.remove); 
 
 module.exports = router;
