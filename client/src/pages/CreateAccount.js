@@ -21,19 +21,16 @@ function CreateAccount() {
     
     const handleSubmit = e => {
         e.preventDefault()
-        console.log("file: . Line: 24.")
-        const data = {
-            firstName: userInputData.firstName,
-            lastName: userInputData.lastName,
-            userName: userInputData.userName,
-            email: userInputData.email,
-            password: userInputData.password
-        }
+        console.log("file: CreateAccount.js, Line: 24.")
+        // const data = {
+        //     firstName: userInputData.firstName,
+        //     lastName: userInputData.lastName,
+        //     userName: userInputData.userName,
+        //     email: userInputData.email,
+        //     password: userInputData.password
+        // }
 
-        API.createUser(data)
-            .then(response => {
-                response.json(response)
-            })
+        API.createUser(userInputData)
             .catch(err => console.log(err))
     }
 

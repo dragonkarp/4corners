@@ -4,6 +4,7 @@ const db = require("../models");
 module.exports = {
   findByEmail: function(req, res) {
     db.User
+      console.log("User just logged in:", req.body)
       .find(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

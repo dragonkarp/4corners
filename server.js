@@ -14,7 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve up static assets (usually on heroku)
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build"));
+}
 
 
 // app.use(
@@ -47,3 +51,16 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+
+
+ // "scripts": {
+  //   "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+  //   "start:prod": "node server.js",
+  //   "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run build\" ",
+  //   "client": "cd client && npm run start",
+  //   "seed": "node scripts/seedDB.js",
+  //   "install": "cd client && npm install",
+  //   "build": "cd client && npm run build",
+  //   "heroku-postbuild": "npm run build"
+  // },
