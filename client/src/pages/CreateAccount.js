@@ -1,5 +1,7 @@
+// import { response } from 'express';
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from "react-bootstrap"
+import API from "../utils/API"
 
 function CreateAccount() {
     //const [newUserData, setNewUserData] = useState({})
@@ -19,20 +21,32 @@ function CreateAccount() {
     
     const handleSubmit = e => {
         e.preventDefault()
+        console.log("file: . Line: 24.")
+        const data = {
+            firstName: userInputData.firstName,
+            lastName: userInputData.lastName,
+            userName: userInputData.userName,
+            email: userInputData.email,
+            password: userInputData.password
+        }
 
-        
+        API.createUser(data)
+            .then(response => {
+                response.json(response)
+            })
+            .catch(err => console.log(err))
     }
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicPassword">
         <Form.Label>First Name</Form.Label>
-        <Form.Control name="first-name" placeholder="First Name" onChange={handleInputChange}/>
+        <Form.Control name="firstName" placeholder="First Name" onChange={handleInputChange}/>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Last Name</Form.Label>
-        <Form.Control name="last-name" placeholder="Last Name" onChange={handleInputChange}/>
+        <Form.Control name="lastName" placeholder="Last Name" onChange={handleInputChange}/>
       </Form.Group>
 
       <Form.Group controlId="formBasicEmail">
@@ -42,17 +56,17 @@ function CreateAccount() {
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Username</Form.Label>
-        <Form.Control name="username" placeholder="username" onChange={handleInputChange}/>
+        <Form.Control name="userName" placeholder="username" onChange={handleInputChange}/>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control name="password" password="password" placeholder="Password" onChange={handleInputChange}/>
+        <Form.Control name="password" type="password" placeholder="Password" onChange={handleInputChange}/>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Confirm Password</Form.Label>
-        <Form.Control password="confirm-password" placeholder="Password" onChange={handleInputChange}/>
+        <Form.Control name="password" type="password" placeholder="Password" onChange={handleInputChange}/>
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={handleSubmit}>

@@ -19,6 +19,6 @@ export default {
   },
   // Create new user //not sure if this is correct - Mike Li
   createUser: function(newUserData) {
-    return axios.post("/api/create", newUserData);
+    return axios.post("/api/user/create", newUserData);
   }
 };

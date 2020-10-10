@@ -7,17 +7,19 @@ const UserSchema = new Schema({
   userName: {type: String, required: true, unique: true},
   email: {
       type:String,
-      unique: true
+      unique: true,
+      required: true
   },
   password: {
-      type :String
+      type :String,
+      required: true
   }
 });
 
-UserSchema.path('email').validate(function (email) {
-    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return emailRegex.test(email.text); // Assuming email has a text attribute
- }, 'The e-mail field cannot be empty.')
+// UserSchema.path('email').validate(function (email) {
+//     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+//     return emailRegex.test(email.text); // Assuming email has a text attribute
+//  }, 'The e-mail field cannot be empty.')
 
 const User = mongoose.model("User", UserSchema);
 

@@ -1,32 +1,32 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <Router>
+    // <Router>
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="/">
         React Task List
       </a>
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <a className="nav-link" href="/Person">Daria's Page</a>
+          <Link className="nav-link" to="/person">Daria's Page</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/Team">Team Board</a>
+          <Link className="nav-link" to="/team">Team Board</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/Resources">Resources</a>
+          <Link className="nav-link" to="/resources">Resources</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/Login">Login</a>
+          <Link className="nav-link" to="/login">Login</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/create">CreateAccount</a>
+          <Link className="nav-link" to="/create">CreateAccount</Link>
         </li>
       </ul>
     </nav>
-    </Router>
+    // </Router>
   );
 }
 

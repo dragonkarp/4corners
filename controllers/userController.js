@@ -9,6 +9,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   createUser: function(req, res) {
+      console.log("User created is:", req.body)
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
