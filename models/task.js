@@ -6,13 +6,24 @@ const taskSchema = new Schema({
     type: String, 
     required: true 
   },
-  taskname: { 
+
+  title: { 
     type: String, 
     trim: true,
     required: "Enter a name for task"
   },
-  comments: [String],
-  date: { 
+
+  description: { 
+    type: String, 
+    trim: true
+  },
+
+  status: { 
+    type: String, 
+    trim: true
+  },
+
+  lastUpdated: { 
     type: Date, 
     default: Date.now 
   }
