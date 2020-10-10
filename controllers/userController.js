@@ -2,9 +2,9 @@ const db = require("../models");
 
 // Defining methods for the userController
 module.exports = {
-  findById: function(req, res) {
+  findByEmail: function(req, res) {
     db.User
-      .findByUserName(req.params.id)
+      .find(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
