@@ -1,11 +1,11 @@
 import React from "react";
-
+import "../components/resourses.css"
 
 //resources function Store the query string and the list of YouTube videos in-state using React Hooks. ----Create a search() function that calls our searchYouTube function.-----Set the result of our YouTube search to the new list variable using our setList setter.---After the search has finished, show it in the view, displaying only the interesting properties
 
 
 function Resources() {
-  const [query, setQuery] = React.useState('European history');
+  const [query, setQuery] = React.useState('REACT TASK LIST');
   const [list, setList] = React.useState(null);
   const search = (e) => {
     e.preventDefault();
