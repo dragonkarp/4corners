@@ -13,6 +13,17 @@ passport.use(new LocalStrategy((email, password, done) => {
         if (!email)
             return done(null, false, { message: 'Incorrect email' });
         // Checks if password is correct.
-        email.comparePassword(password.done)
+        User.comparePassword(password.done)
     })
 }))
+
+// In order to help keep authentication state across HTTP requests,
+// Sequelize needs to serialize and deserialize the user
+// Just consider this part boilerplate needed to mak`e it all work
+passport.serializeUser(function (user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+    cb(null, obj);
+});
