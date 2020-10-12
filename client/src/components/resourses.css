@@ -2,8 +2,8 @@ body {
     background: #f7f7f7;
   }
   .app {
-    width: 36em;
-    margin: 3em;
+    width: 55em;
+    margin: 2em;
   }
   form {
     display: grid;
@@ -12,7 +12,7 @@ body {
     margin-bottom: 1em;
   }
   button {
-    background: #17f;
+    background: #EB6864;
     color: #fff;
     font: inherit;
     border: none;
@@ -60,3 +60,7 @@ body {
     font-size: 80%;
     color: #555;
   }
+
+  a {
+    color: #EB6864;
+}
