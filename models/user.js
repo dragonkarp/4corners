@@ -9,6 +9,13 @@ const UserSchema = new Schema({
       type:String,
       unique: true
   },
+  username: {
+      type: String,
+      unique: true,
+      min: 6,
+      max: 15,
+      required: true
+  },
   password: {
       type :String,
       min: 8,
