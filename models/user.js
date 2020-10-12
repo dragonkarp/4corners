@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -32,16 +33,16 @@ UserSchema.method.comparePassword = function(password, cb) {
         if (err)
             return cb(err);
         else {
+            // isMatch is a bool.
             if (!isMatch)
-                return cb(null, isMatch); // Returns error is password does not match.
-            return cb(null, this)
+                return cb(null, isMatch, { message: "Invalid password." }); // Returns error is password does not match the password in the database. -mike li
+            return cb(null, this) // "this" is the user. It is returned if the password is correct. -mike li
         }
     })
 }
 
 
 const User = mongoose.model("User", UserSchema);
-
 module.exports = User;
 
 
