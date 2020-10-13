@@ -21,20 +21,21 @@ console.log("Window.jsx " + show);
         <Modal
             isOpen={show}
             onRequestClose={onClose}
-            className={"modal"}
+            className={"modal_overlay"}
             overlayClassName={"overlay"}
         >
             <div className={"close-btn-ctn"}>
                 {/* this is going to take up 90% of the row */}
-                <h1 style={{ flex: "1 90%" }}>{item.title}</h1>
+                <h2 style={{ flex: "1 90%" , textAlign: "center", color: "darkblue" }}>Task Title: {item.title}</h2>
                 <button className={"close-btn"} onClick={onClose}>X</button>
             </div>
             <div>
-                <h2>Description</h2>
-                <p>{item.content}</p>
-                <h2>Status</h2>
+            <br></br>
+                <h3 style={{ textAlign: "left", paddingLeft: "80px" }}>Description</h3>
+                <p  style={{ textAlign: "left", paddingLeft: "80px" }}>{item.content}</p>
+                <h5 style={{ textAlign: "right", paddingRight: "100px" }}>Status</h5>
                 {/* this just capitalizes the status */}
-                <p>{item.icon} {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}</p>
+                <p style={{ textAlign: "right", paddingRight: "100px" }}>{item.icon} {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}</p>
             </div>
 
         </Modal>
