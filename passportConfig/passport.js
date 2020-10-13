@@ -1,7 +1,7 @@
 const passport = require("passport");
-const { findOne } = require("../models/user");
+//const { findOne } = require("../models/user");
 const LocalStrategy = require("passport-local").Strategy 
-const User = require("./models/User")
+const User = require("../models/user")
 
 // email and password are from the client. done is invoked when successfully authenticated.
 passport.use(new LocalStrategy((email, password, done) => {
@@ -9,7 +9,7 @@ passport.use(new LocalStrategy((email, password, done) => {
         // Something went wrong with the database.
         if (err)
             return done(err)
-        //If email does nto exist, return error message.
+        //If email does not exist, return error message.
         if (!email)
             return done(null, false, { message: 'Incorrect email' });
         // Checks if password is correct.

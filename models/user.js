@@ -7,7 +7,8 @@ const UserSchema = new Schema({
   lastName: { type: String, required: true },
   email: {
       type:String,
-      unique: true
+      unique: true,
+      required: true
   },
   username: {
       type: String,
@@ -51,6 +52,7 @@ UserSchema.method.comparePassword = function(password, cb) {
 
 
 const User = mongoose.model("User", UserSchema);
+
 module.exports = User;
 
 
