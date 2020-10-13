@@ -146,11 +146,11 @@ select {
     text-align: center;
 }
 
-.modal {
+.modal_overlay {
     background-color: #F4F5F7;
     border-radius: 2px;
     margin: 48px 0 80px;
-    min-height: 450px;
+    height: 350px;
     width: 800px;
     outline: none;
     padding: 20px;
