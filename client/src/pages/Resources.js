@@ -25,7 +25,7 @@ function Resources() {
               {list.map(item => (
                 <li className="item" key={item.id}>
                   <div>
-                    <b><a href={item.link}>{item.title}</a></b>
+                    <b><a target="_blank" href={item.link}>{item.title}</a></b>
                     <p>{item.description}</p>
                   </div>
 
