@@ -18,6 +18,7 @@ const taskSeed = [
     title: "Setup Kanban Board",
     description: "Use React Dnd to set this up",
     status: "Open",
+    icon: "⭕️",
     lastUpdated: new Date(Date.now())
   },
 
@@ -26,6 +27,7 @@ const taskSeed = [
     title: "Setup Live Chat",
     description: "Use Socket IO to set this up",
     status: "Open",
+    icon: "⭕️",
     lastUpdated: new Date(Date.now())
   },
 
@@ -34,6 +36,7 @@ const taskSeed = [
     title: "Resource page",
     description: "Interact with Youtube api to return results",
     status: "In Progress",
+    icon: "🔆️",
     lastUpdated: new Date(Date.now())
   },
 
@@ -42,6 +45,7 @@ const taskSeed = [
     title: "User Authentication",
     description: "Using passport.js and keep track of user data",
     status: "Done",
+    icon: "✅",
     lastUpdated: new Date(Date.now())
   },
 
@@ -50,6 +54,7 @@ const taskSeed = [
     title: "User Profile page setup",
     description: "set up profile page by combining all elements",
     status: "Done",
+    icon: "✅",
     lastUpdated: new Date(Date.now())
   }
 
