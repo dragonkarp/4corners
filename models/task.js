@@ -23,6 +23,11 @@ const taskSchema = new Schema({
     trim: true
   },
 
+  icon: { 
+    type: String, 
+    trim: true
+  },
+
   lastUpdated: { 
     type: Date, 
     default: Date.now 
