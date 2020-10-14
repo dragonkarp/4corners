@@ -1,64 +1,84 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
+const passport = require("passport")
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: {
-      type:String,
-      unique: true,
-      required: true
+    type: String,
+    unique: true,
+    required: true
   },
   username: {
-      type: String,
-      unique: true,
-      min: 6,
-      max: 15,
-      required: true
+    type: String,
+    unique: true,
+    min: 6,
+    max: 15,
+    required: true
   },
   password: {
-      type :String,
-      min: 8,
-      max: 15,
-      required: true
+    type: String,
+    min: 8,
+    max: 15,
+    required: true
   },
 });
 
-// Hash the password.
-UserSchema.pre("save", function(next) {
-    if (!this.isModified('password'))
-        return next();
-    bcrypt.hash(this.password, 10, (err, passwordHash) => {
-        if (err)
-            return next(err);
-        this.password = passwordHash;
-        next();
-    })
-})
-
-UserSchema.method.comparePassword = function(password, cb) {
-    bcrypt.compare(password, this.password, (err, isMatch) => {
-        if (err)
-            return cb(err);
-        else {
-            // isMatch is a bool.
-            if (!isMatch)
-                return cb(null, isMatch, { message: "Invalid password." }); // Returns error is password does not match the password in the database. -mike li
-            return cb(null, this) // "this" is the user. It is returned if the password is correct. -mike li
-        }
-    })
+var User = mongoose.model('User', UserSchema);
+module.exports = User;
+module.exports.createUser = function (newUser, callback) {
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(newUser.password, salt, function (err, hash) {
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
 }
 
+module.exports.getUserByUsername = function (username, callback) {
+    var query = { username: username };
+    User.findOne(query, callback);
+}
 
-const User = mongoose.model("User", UserSchema);
+module.exports.getUserById = function (id, callback) {
+    User.findById(id, callback);
+}
 
-module.exports = User;
+module.exports.comparePassword = function (candidatePassword, hash, callback) {
+    bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+        if (err) throw err;
+        callback(null, isMatch);
+    });
+}
 
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.getUserByUsername(username, function(err, user){
+      if(err) throw err;
+      if(!user){
+        return done(null, false, {message: 'Unknown User'});
+      }
+      User.comparePassword(password, user.password, function(err, isMatch){
+        if(err) throw err;
+     	if(isMatch){
+     	  return done(null, user);
+     	} else {
+     	  return done(null, false, {message: 'Invalid password'});
+     	}
+     });
+   });
+  }
+));
 
-
-
-// UserSchema.path('email').validate(function (email) {
-//     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-//     return emailRegex.test(email.text); // Assuming email has a text attribute
-//  }, 'The e-mail field cannot be empty.')
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser(function(id, done) {
+    User.getUserById(id, function(err, user) {
+      done(err, user);
+    });
+  });

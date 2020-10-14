@@ -19,6 +19,9 @@ export default {
   },
   // Creates new user on database.
   createAccount: function(signUpData) {
-    return axios.post("/login", signUpData);
+    return axios.post("/signup", signUpData);
+  },
+  loginUser: function(userCredentials) {
+    return axios.post("/login", userCredentials);
   }
 };

@@ -46,6 +46,23 @@ function Login() {
     }
   }
 
+  // Login user functions.
+  const [userLoginCredentials, setUserLoginCredentials] = useState({});
+
+  const handleLoginCredentialsInputChange = e => {
+    e.preventDefault()
+
+    const {name, value} = e.target
+    setUserLoginCredentials({ ...userLoginCredentials, [name]: value })
+  }
+
+  const handleSubmitLogin = e => {
+    e.preventDefault()
+
+    API.loginUser(userLoginCredentials)
+    .then(res => console.log(res))
+  }
+
 
   return (
     <Container>
@@ -55,15 +72,15 @@ function Login() {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control name="email" type="email" placeholder="email" />
+              <Form.Control name="email" type="email" placeholder="email" onChange={handleLoginCredentialsInputChange}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control name="password" type="password" placeholder="password" />
+              <Form.Control name="password" type="password" placeholder="password" onChange={handleLoginCredentialsInputChange}/>
             </Form.Group>
           </Form>
-          <Button variant="primary" type="submit">Login</Button>
+          <Button variant="primary" type="submit" onClick={handleSubmitLogin}>Login</Button>
         </Col>
 
         <Col>
@@ -81,12 +98,12 @@ function Login() {
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>First name</Form.Label>
-              <Form.Control name="first-name" type="username" placeholder="first name" onChange={handleCreateUserInputChange}/>
+              <Form.Control name="firstName" type="username" placeholder="first name" onChange={handleCreateUserInputChange}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Last name</Form.Label>
-              <Form.Control name="last-name" type="username" placeholder="last name" onChange={handleCreateUserInputChange}/>
+              <Form.Control name="lastName" type="username" placeholder="last name" onChange={handleCreateUserInputChange}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
