@@ -10,15 +10,15 @@ const DropWrapper = ({onDrop, children, status}) => {
     const [{isOver}, drop] = useDrop({
         accept: ITEM_TYPE,
         canDrop: (item, monitor) => {
-            const itemIndex  = statuses.findIndex(si => si.status === item.status)
+            const itemIndex  = statuses.findIndex(si => si.status == item.status.toLowerCase())
             // when we drag the items over the columns (highlighted)
             // we need to know the index of the item to check whether they can be dropped or not
             // if the index is next to each other then accept the drop
 
-            const statusIndex = statuses.findIndex(si => si.status === status)
+            const statusIndex = statuses.findIndex(si => si.status == status)
             return[itemIndex +1, itemIndex -1, itemIndex].includes(statusIndex);
         },
-        drop: (item,monitor) => {
+        drop: (item, monitor) => {
             onDrop(item, monitor, status);
         },
         collect: monitor => ({

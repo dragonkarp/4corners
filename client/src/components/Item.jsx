@@ -82,10 +82,10 @@ const Item = ({item, index, moveItem, status}) => {
             onClick={onOpen}
             >
             {/* //this is the rectangular color block */}
-            <div className={"color-bar"} style={{backgroundColor: status.color}}/>
+            <span className={"color-bar"} style={{backgroundColor: status.color}}></span>
             {/* title of the item */}
-            <p className={"item-title"}>{item.content}</p>
-            <p className={"item-status"}>{item.icon}</p>
+            <div className={"item-title"}>{item.title}</div>
+            <span className={"item-status"}>Status: {item.icon}</span>
             </div>
             {/* this is the modal */}
             <Window
