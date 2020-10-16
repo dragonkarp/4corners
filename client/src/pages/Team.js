@@ -8,7 +8,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Homepage from "./Homepage";
 import Header from "../components/Header";
 
-import dnd from "../style/dnd.css"
+import dnd from "../style/dnd.css";
 
 
 function Team() {

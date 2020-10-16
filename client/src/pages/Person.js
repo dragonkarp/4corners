@@ -5,6 +5,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import Chat from "../components/Chat";
+import chat from "../components/Chat/chat.css";
 // import { Input, TextArea, FormBtn } from "../components/Form";
 // import { TextArea, FormBtn } from "../components/Form";
 
@@ -21,7 +23,7 @@ function Person() {
   // Loads all tasks and sets them to tasks
   function loadTasks() {
     API.getTasks()
-      .then(res => 
+      .then(res =>
         setTasks(res.data)
       )
       .catch(err => console.log(err));
@@ -37,7 +39,7 @@ function Person() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
+    setFormObject({ ...formObject, [name]: value })
   };
 
   // When the form is submitted, use the API.saveTask method to save the task data
@@ -56,64 +58,63 @@ function Person() {
     }
   };
 
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-4">
-            <Jumbotron>
-              <h1>Tasks Assigned to You</h1>
-            </Jumbotron>
-            {tasks.length ? (
-              <List>
-                {tasks.map(task => (
-                  <ListItem key={task._id}>
-                    <Link to={"/tasks/" + task._id}>
-                      <strong>
-                        {task.taskname} assigned to <button className="userLabel">{task.user}</button>
-                        
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteTask(task._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-          <Col size="md-4 sm-12">
-            <Jumbotron>
-              <h1>Tasks Assigned to Others</h1>
-            </Jumbotron>
-            {tasks.length ? (
-              <List>
-                {tasks.map(task => (
-                  <ListItem key={task._id}>
-                    <Link to={"/tasks/" + task._id}>
-                      <strong>
-                        {task.taskname} assigned to <button className="userLabel">{task.user}</button>
-                        
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteTask(task._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-          <Col size="md-4 sm-12">
-            <Jumbotron>
-              <h1>Chat Container</h1>
-            </Jumbotron>
-           
-          </Col>
+  return (
+    <Container fluid>
+      <Row>
+        <Col size="md-4">
+          <Jumbotron>
+            <h1>Tasks Assigned to You</h1>
+          </Jumbotron>
+          {tasks.length ? (
+            <List>
+              {tasks.map(task => (
+                <ListItem key={task._id}>
+                  <Link to={"/tasks/" + task._id}>
+                    <strong>
+                      {task.taskname} assigned to <button className="userLabel">{task.user}</button>
 
-        </Row>
-      </Container>
-    );
-  }
+                    </strong>
+                  </Link>
+                  <DeleteBtn onClick={() => deleteTask(task._id)} />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+              <h3>No Results to Display</h3>
+            )}
+        </Col>
+        <Col size="md-4 sm-12">
+          <Jumbotron>
+            <h1>Tasks Assigned to Others</h1>
+          </Jumbotron>
+          {tasks.length ? (
+            <List>
+              {tasks.map(task => (
+                <ListItem key={task._id}>
+                  <Link to={"/tasks/" + task._id}>
+                    <strong>
+                      {task.taskname} assigned to <button className="userLabel">{task.user}</button>
+
+                    </strong>
+                  </Link>
+                  <DeleteBtn onClick={() => deleteTask(task._id)} />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+              <h3>No Results to Display</h3>
+            )}
+        </Col>
+        <Col size="md-4 sm-12">
+          <Jumbotron>
+            <h1>Chat Container</h1>
+          </Jumbotron>
+          <Chat className={chat} />
+        </Col>
+      </Row>
+    </Container>
+  );
+}
 
 
 export default Person;
