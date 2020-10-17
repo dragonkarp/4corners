@@ -22,8 +22,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    console.log("req.body: ", req.body);
-    console.log("req.params.id", req.params.id);
+    console.log("req.body: ", req.body)
+    console.log("req.params.id", req.params.id)
     db.Task
       .findOneAndUpdate({ _id: req.params.id }, req.body, {new:true})
       .then(dbModel => {

@@ -55,6 +55,7 @@ const Homepage = () => {
                 .concat({ ...item, status, icon: mapping.icon });
             console.log("new items: ", ...newItems);
             console.log([...newItems]);
+
             return [...newItems];
         });
 

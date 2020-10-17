@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-// import Jumbotron from "../components/Jumbotron";
+//import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -63,6 +63,7 @@ function Person() {
     <Container fluid>
       <Row>
         <Col size="md-4">
+
         <div  style={{margin:"10px" }} className="chat">
             <header>
             <h3  style={{textAlign:"center"}}>Tasks Assigned to Others</h3>
