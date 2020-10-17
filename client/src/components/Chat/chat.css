@@ -5,7 +5,11 @@ body {
   .col-md-4 {
     background-color:lightblue!important;
   }
+<<<<<<< HEAD
+  
+=======
 
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
   .chat {
     text-align: center;
     max-width: 728px;
@@ -14,7 +18,11 @@ body {
   
   .chat header {
     background-color: white;
+<<<<<<< HEAD
+    height: 10vh;
+=======
     height:10vh;
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
     min-height: 50px;
     color: white;
     /* position: fixed; */
@@ -35,6 +43,9 @@ body {
     flex-direction: column;
     justify-content: center;
     min-height: 50vh;
+<<<<<<< HEAD
+    background-color: #f5eaea;
+=======
     background-color:#f5eaea;
 
   }
@@ -50,8 +61,20 @@ body {
     padding: 0 10px;
 
 
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
   }
   
+  .chat input {
+    line-height: 1.5;
+    width: 100%;
+    font-size: 1.5rem;
+    background: white;
+    color: black;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+  }
+
   .chat main {
     padding: 10px;
     height: 35vh;
@@ -76,7 +99,11 @@ body {
   .chat form {
     height: 10vh;
     bottom: 0;
+<<<<<<< HEAD
+    background-color: #f5eaea;
+=======
     background-color:#f5eaea;
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
     width: 100%;
     max-width: 728px;
     font-size: 1.5rem;
@@ -87,9 +114,12 @@ body {
     background-color: rgb(56, 56, 143);
   }
   
+<<<<<<< HEAD
+=======
   
 
   
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
   .chat button {
     background-color: #282c34; /* Green */
     border: none;

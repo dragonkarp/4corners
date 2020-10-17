@@ -1,6 +1,10 @@
 
 
+<<<<<<< HEAD
+import React, { useState} from "react";
+=======
 import React, { useState } from "react";
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -34,7 +38,11 @@ function Chat() {
     return (
         <div  style={{margin:"10px" }} className="chat">
             <header>
+<<<<<<< HEAD
+            <h3>Chat with your team 💬</h3>
+=======
                 <h3>Chat with your team 💬</h3>
+>>>>>>> 9039218fb561b47feec80c274c33b0122fcb47e9
                 <SignOut />
             </header>
 

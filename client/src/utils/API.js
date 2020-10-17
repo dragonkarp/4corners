@@ -22,5 +22,12 @@ export default {
     console.log("/api/tasks/" + id)
     console.log("taskData To Post: ", taskData)
     return axios.put("/api/tasks/" + id, taskData);
+  },
+  // Creates new user on database.
+  createAccount: function (signUpData) {
+    return axios.post("/api/user/signup", signUpData);
+  },
+  loginUser: function (userCredentials) {
+    return axios.post("/api/user/login", userCredentials);
   }
 };

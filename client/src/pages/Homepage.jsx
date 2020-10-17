@@ -53,7 +53,6 @@ const Homepage = () => {
             newItems = prevState
                 .filter(i => i._id !== item._id)
                 .concat({ ...item, status, icon: mapping.icon });
-
             console.log("new items: ", ...newItems);
             console.log([...newItems]);
 
@@ -89,6 +88,8 @@ const Homepage = () => {
             return [...newItems];
         });
     }
+
+    
 
 
     return (
