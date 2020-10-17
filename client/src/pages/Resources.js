@@ -6,26 +6,53 @@ import "../components/resourses.css"
 
 function Resources() {
   const [query, setQuery] = React.useState('REACT TASK LIST');
-  const [list, setList] = React.useState(null);
-  const search = (e) => {
+  const [youtubeList, setyoutubeList] = React.useState(null);
+  const [githubList, setgithubList] = React.useState(null);
+  // const [type, setType] = React.useState("")
+
+// React.useEffect(() => console.log("Type is:", type), [type])
+  const search =  e => {
+    
     e.preventDefault();
-    searchYouTube(query).then(setList);
-    searchgitHub(query).then(setList);
-    searchStack(query).then(setList);
+    console.log("ARE YOU WORKING?")
+    console.log("Event target is",e.target)
+  let name = e.target.name;
+    console.log(name);
+    if (name === "youtube")
+    
+    {console.log("before search");
+      searchYouTube(query).then(setyoutubeList);
+      setgithubList(null);
+    }
+    else if (name === "gitHub")
+    {
+      searchgitHub(query).then(setgithubList);
+      setyoutubeList(null);
+      // searchStack(query).then(setList);
+    }
+
+    // e.preventDefault();
+    // searchYouTube(query).then(setList);
+    // searchgitHub(query).then(setList);
+    // // searchStack(query).then(setList);
   };
   return (
     <div className="app">
-      <form onSubmit={search}>
+      <form>
         <input autoFocus value={query} onChange={e => setQuery(e.target.value)} />
-        <button>Search YouTube</button>
-        <button>Search Github</button>
+        <button 
+        onClick={e =>search(e)} 
+        name="youtube">Search YouTube</button>
+        <button 
+        onClick={e =>search(e)} 
+        name="gitHub">Search Github</button>
       </form>
-      {list &&
-        (list.length === 0
+      {youtubeList &&
+        (youtubeList.length === 0
           ? <p>No results</p>
           : (
             <ul className="items">
-              {list.map(item => (
+              {youtubeList.map(item => (
                 <li className="item" key={item.id}>
                   <div>
                     <b><a target="_blank" rel="noopener noreferrer" href={item.link}>{item.title}</a></b>
@@ -40,19 +67,23 @@ function Resources() {
         )
       }
     {/* testing github api appendings */}
-      {list &&
-        (list.length === 0
+      {githubList &&
+        (githubList.length === 0
           ? <p>No results</p>
           : (
             <ul className="items">
-              {list.map(items => (
+              {githubList.map(items => (
                 <li className="item" key={items.id}>
                   <div>
-                    <b><a target="_blank" rel="noopener noreferrer" href={items.archive_url}>{items.title}</a></b>
-                    <p>{items.description}</p>
+                    <a target="_blank" rel="noopener noreferrer" href={items.clone_url}><p>Link to Repository</p></a>
+                    <p>Name: {items.name}</p>
+                    <p>Description: {items.description}</p>
+                    <p>Languages: {items.language}</p>
+                    <p>Author: {items.owner.login} <a target="_blank" rel="noopener noreferrer" href={items.owner.html_url}>author Profile</a></p>
+
                   </div>
 
-                  <img alt="" src={items.thumbnail} />
+                  <img alt="" src={items.owner.avatar_url + "s=100"} />
                 </li>
               ))}
             </ul>
@@ -66,6 +97,7 @@ function Resources() {
 // search youtube function :1. Takes the query string as a parameter, URI-encodes it, and appends it to the API’s URL. 2.Uses await syntax to get the response and get JSON from out of the response’s body. 3. Returns the items key, filtering out everything except items with a type key of "video".
 
 async function searchYouTube(q) {
+  console.log("inside yt function");
   q = encodeURIComponent(q);
   const response = await fetch("https://youtube-search-results.p.rapidapi.com/youtube-search/?q=" + q, {
     "method": "GET",
@@ -76,7 +108,7 @@ async function searchYouTube(q) {
   });
   const body = await response.json();
   console.log(body);
-  return body.items.filter(item => item.type === 'video');
+  return (body.items || []).filter(item => item.type === 'video');
 }
 
 async function searchgitHub(q2) {
