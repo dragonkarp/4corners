@@ -16,5 +16,18 @@ export default {
   // Saves a task to the database
   saveTask: function(taskData) {
     return axios.post("/api/tasks", taskData);
+  },
+  // Saves a task to the database
+  updateTask: function(id, taskData) {
+    console.log("/api/tasks/" + id)
+    console.log("taskData To Post: ", taskData)
+    return axios.put("/api/tasks/" + id, taskData);
+  },
+  // Creates new user on database.
+  createAccount: function (signUpData) {
+    return axios.post("/api/user/signup", signUpData);
+  },
+  loginUser: function (userCredentials) {
+    return axios.post("/api/user/login", userCredentials);
   }
 };

@@ -22,10 +22,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    console.log("req.body: ", req.body);
+    console.log("req.params.id", req.params.id);
     db.Task
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .findOneAndUpdate({ _id: req.params.id }, req.body, {new:true})
+      .then(dbModel => {
+        res.json(dbModel)
+        console.log("dbModel", dbModel)})
+      .catch(err => {
+        console.log(err)
+        res.status(422).json(err)});
   },
   remove: function(req, res) {
     db.Task

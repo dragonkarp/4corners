@@ -17,7 +17,7 @@ function Team() {
 
         <DndProvider className={dnd} backend={HTML5Backend}>
         <Header />
-        <Homepage />
+        <Homepage className={dnd}/>
         </DndProvider>
     );
 }

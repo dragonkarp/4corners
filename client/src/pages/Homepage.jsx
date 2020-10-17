@@ -45,17 +45,37 @@ const Homepage = () => {
     }
 
     // this is to update statuses when we move the items
-    const onDrop = (item, monitor, status) => {
+    const onDrop = async (item, monitor, status) => {
         const mapping = statuses.find(si => si.status == status.toLowerCase());
+        let newItems = [];
 
-        setItems(prevState => {
-            const newItems = prevState
+        await setItems(prevState => {
+            newItems = prevState
                 .filter(i => i._id !== item._id)
                 .concat({ ...item, status, icon: mapping.icon });
-            console.log("new items: ", newItems);
+            console.log("new items: ", ...newItems);
             console.log([...newItems]);
             return [...newItems];
         });
+
+        console.log("data to send: ", newItems.filter(i => i._id == item._id));
+
+        const dataToPost = newItems.filter(i => i._id == item._id);
+
+        await API.updateTask(item._id, {
+            description: dataToPost[0].description,
+            icon: dataToPost[0].icon,
+            lastUpdated: Date(),
+            status: dataToPost[0].status,
+            title: dataToPost[0].title,
+            user: dataToPost[0].user,
+            _id: dataToPost[0]._id
+        })
+            .then((res) => {
+                alert("Task Saved Successfully!!")
+            })
+            .catch(err => console.log(err))
+
     }
 
     const moveItem = (dragIndex, hoverIndex) => {
@@ -67,6 +87,8 @@ const Homepage = () => {
             return [...newItems];
         });
     }
+
+    
 
 
     return (
@@ -80,7 +102,7 @@ const Homepage = () => {
                             <Col>
                                 {items
                                     .filter(i => i.status.toLowerCase() == s.status)
-                                    .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)}
+                                    .map((i, idx) => <Item key={i._id} item={i} index={idx} moveItem={moveItem} status={s} />)}
                             </Col>
                         </DropWrapper>
                     </div>

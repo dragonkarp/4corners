@@ -1,6 +1,6 @@
 
 
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -32,9 +32,9 @@ function Chat() {
     const [user] = useAuthState(auth);
 
     return (
-        <div className="chat">
+        <div  style={{margin:"10px" }} className="chat">
             <header>
-                <h1>⚛️🔥💬</h1>
+            <h3>Chat with your team 💬</h3>
                 <SignOut />
             </header>
 
@@ -55,7 +55,7 @@ function SignIn() {
 
     return (
         <>
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
+            <button id="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
         </>
     )
 
@@ -64,7 +64,7 @@ function SignIn() {
 function SignOut() {
     return auth.currentUser && (
 
-        <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+        <button className="sign-in" onClick={() => auth.signOut()}>Sign Out</button>
 
     )
 
@@ -102,7 +102,7 @@ function ChatRoom() {
     }
 
     return (
-        <>
+        <div style={{margin:"10px" }}>
             <main>
                 {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                 <span></span>
@@ -115,7 +115,7 @@ function ChatRoom() {
                 <button type="submit" disabled={!formValue}>🕊️</button>
 
             </form>
-        </>
+        </div>
     )
 }
 
