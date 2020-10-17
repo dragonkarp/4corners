@@ -5,7 +5,7 @@ import "./style.css";
 function Nav() {
   return (
     <Router>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <a className="navbar-brand" href="/">
         React Task List
       </a>

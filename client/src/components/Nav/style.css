@@ -2,6 +2,10 @@ nav {
     color: white;
 }
 
+.navbar {
+    background-color: #054F7C;
+}
+
 .nav-tabs {
     float: right;
     list-style-type: none;

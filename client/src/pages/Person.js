@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
+//import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Chat from "../components/Chat";
 import chat from "../components/Chat/chat.css";
+import TaskUpdates from "../components/TaskUpdates";
+
 // import { Input, TextArea, FormBtn } from "../components/Form";
 // import { TextArea, FormBtn } from "../components/Form";
 
@@ -62,16 +64,31 @@ function Person() {
     <Container fluid>
       <Row>
         <Col size="md-4">
-          <Jumbotron>
-            <h1>Tasks Assigned to You</h1>
-          </Jumbotron>
+
+        <div  style={{margin:"10px" }} className="chat">
+            <header>
+            <h3  style={{textAlign:"center"}}>Tasks Assigned to Others</h3>
+            </header>
+
+            <section>
+            <TaskUpdates/>
+            </section>
+        </div>
+
+        </Col>
+        <Col size="md-4 sm-12">
+        <div   style={{margin:"10px" }} className="chat">
+          <header>
+            <h3 style={{textAlign:"center"}}>Tasks Assigned to You</h3>
+          </header>
+          <section>
           {tasks.length ? (
             <List>
               {tasks.map(task => (
                 <ListItem key={task._id}>
                   <Link to={"/tasks/" + task._id}>
                     <strong>
-                      {task.taskname} assigned to <button className="userLabel">{task.user}</button>
+                      {task.taskname} assigned to <span className="userLabel">{task.user}</span>
 
                     </strong>
                   </Link>
@@ -80,36 +97,15 @@ function Person() {
               ))}
             </List>
           ) : (
-              <h3>No Results to Display</h3>
+              <h5>No Results to Display</h5>
             )}
+            </section>
+            </div>
         </Col>
         <Col size="md-4 sm-12">
-          <Jumbotron>
-            <h1>Tasks Assigned to Others</h1>
-          </Jumbotron>
-          {tasks.length ? (
-            <List>
-              {tasks.map(task => (
-                <ListItem key={task._id}>
-                  <Link to={"/tasks/" + task._id}>
-                    <strong>
-                      {task.taskname} assigned to <button className="userLabel">{task.user}</button>
-
-                    </strong>
-                  </Link>
-                  <DeleteBtn onClick={() => deleteTask(task._id)} />
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-              <h3>No Results to Display</h3>
-            )}
-        </Col>
-        <Col size="md-4 sm-12">
-          <Jumbotron>
-            <h1>Chat Container</h1>
-          </Jumbotron>
+          <div>
           <Chat className={chat} />
+          </div>
         </Col>
       </Row>
     </Container>
