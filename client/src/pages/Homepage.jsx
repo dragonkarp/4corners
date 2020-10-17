@@ -47,10 +47,10 @@ const Homepage = () => {
     // this is to update statuses when we move the items
     const onDrop = async (item, monitor, status) => {
         const mapping = statuses.find(si => si.status == status.toLowerCase());
-        let newItems =[];
+        let newItems = [];
 
         await setItems(prevState => {
-                 newItems = prevState
+            newItems = prevState
                 .filter(i => i._id !== item._id)
                 .concat({ ...item, status, icon: mapping.icon });
 
@@ -62,10 +62,21 @@ const Homepage = () => {
 
         console.log("data to send: ", newItems.filter(i => i._id == item._id));
 
-        await API.updateTask(item._id, newItems.filter(i => i._id == item._id))
-        .then((res) => {
-        alert("Task Saved Successfully!!")})
-        .catch(err => console.log(err))
+        const dataToPost = newItems.filter(i => i._id == item._id);
+
+        await API.updateTask(item._id, {
+            description: dataToPost[0].description,
+            icon: dataToPost[0].icon,
+            lastUpdated: Date(),
+            status: dataToPost[0].status,
+            title: dataToPost[0].title,
+            user: dataToPost[0].user,
+            _id: dataToPost[0]._id
+        })
+            .then((res) => {
+                alert("Task Saved Successfully!!")
+            })
+            .catch(err => console.log(err))
 
     }
 

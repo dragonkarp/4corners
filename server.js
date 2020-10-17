@@ -40,7 +40,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://user:69mFuTJutYZw2Qoc@clusterexplore.uqtfh.mongodb.net/reacttasklist?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
