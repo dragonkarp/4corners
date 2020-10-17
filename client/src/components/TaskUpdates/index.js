@@ -39,7 +39,7 @@ function TaskUpdates() {
                 clearInterval(timerInterval);
                 loadTasks();
                 console.log("reloaded data");
-                //setTime();
+                setTime();
             }
 
         }, 1000);
