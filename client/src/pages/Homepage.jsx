@@ -3,6 +3,7 @@ import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
 import Col from "../components/Col";
 //import { data, statuses } from "../data";
+import dnd from "../style/dnd.css";
 import API from "../utils/API";
 
 const statuses = [{
@@ -87,7 +88,7 @@ const Homepage = () => {
             newItems.splice(hoverIndex, 0, item);
             return [...newItems];
         });
-    }
+    };
 
     
 
@@ -97,7 +98,7 @@ const Homepage = () => {
             {/* creates the column blocks */}
             {statuses.map(s => {
                 return (
-                    <div key={s.status} className={"col-wrapper"}>
+                    <div key={s.status} className={"col-wrapper dnd"}>
                         <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
                         <DropWrapper onDrop={onDrop} status={s.status}>
                             <Col>
