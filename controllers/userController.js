@@ -16,8 +16,11 @@ module.exports = {
     });
 
     db.User.createUser(newUser, function (err, user) {
-      if (err) throw err;
-      res.send(user).end()
+      if (err) {
+        res.send({}).end()
+      } else {
+        res.send(user).end()
+      }
     });
   },
 

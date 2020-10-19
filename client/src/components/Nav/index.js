@@ -1,27 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./style.css";
 
 function Nav() {
   return (
-    <Router>
     <nav className="navbar navbar-expand-lg navbar-dark">
-      <a className="navbar-brand" href="/">
+      <Link to="/Person" className="navbar-brand">
         React Task List
-      </a>
+      </Link>
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <a className="nav-link" href="/Person">Daria's Page</a>
+          <Link className="nav-link" to="/Person">Daria's Page</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/Team">Team Board</a>
+          <Link className="nav-link" to="/Team">Team Board</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/Resources">Resources</a>
+          <Link className="nav-link" to="/Resources">Resources</Link>
         </li>
       </ul>
     </nav>
-    </Router>
   );
 }
 

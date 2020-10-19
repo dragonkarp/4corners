@@ -11,13 +11,15 @@ import TaskUpdates from "../components/TaskUpdates";
 // import { Input, TextArea, FormBtn } from "../components/Form";
 // import { TextArea, FormBtn } from "../components/Form";
 
-function Person() {
+function Person(props) {
+
   // Setting our component's initial state
   const [tasks, setTasks] = useState([])
   const [formObject, setFormObject] = useState({})
 
   // Load all tasks and store them with setTasks
   useEffect(() => {
+    console.log("am I getting userData: ", props);
     loadTasks()
   }, [])
 
