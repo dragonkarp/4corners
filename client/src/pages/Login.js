@@ -40,7 +40,14 @@ function Login(props) {
       console.log(confirmPasswordState.confirmPassword)
 
       API.createAccount(signUpData)
-      .then(res => console.log(res))
+      .then(res => { 
+        if (res.data.username) {
+            alert("The user has been created. Please use your e-mail to login."); 
+        } else {
+            alert("Error creating a user :("); 
+        }
+        console.log(res); 
+      })
       .catch(err => console.log(err))
     }
     else {

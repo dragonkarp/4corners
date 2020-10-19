@@ -38,17 +38,13 @@ function AuthRoute() {
         await API.isLoggedIn()
             .then(async res => {
                 console.log("response in checkAuth function :", res);
- //               setLoading(true);
                 if (res.data.success === true) {
                     setState({
                         ...state,
                         id: res.data.user.id,
                         isAuthenticated: true,
                     });
-
- //                   setLoading(false);
                 };
- //               setLoading(false)
             });
     };
 
@@ -60,13 +56,14 @@ function AuthRoute() {
                 (
                     <BrowserRouter>
                         <Nav />
-                        <Route exact path={["/person"]}>
+                        <Redirect to="/Person" />
+                        <Route exact path={["/Person"]}>
                             <Person userData={userData} />
                         </Route>
-                        <Route exact path="/team">
+                        <Route exact path="/Team">
                             <Team />
                         </Route>
-                        <Route exact path="/resources">
+                        <Route exact path="/Resources">
                             <Resources username={userData.username} changeState={state.changeState} />
                         </Route>
                     </BrowserRouter>)
