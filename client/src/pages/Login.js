@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
 
 
-function Login() {
+function Login(props) {
   // Create-account states and hooks.
+  console.log("these are my props in login page: ", props)
+
   const [signUpData, setSignUpData] = useState({})
 
   // Log the current state of signUpData after every key stroke.
@@ -60,7 +62,14 @@ function Login() {
     e.preventDefault()
 
     API.loginUser(userLoginCredentials)
-    .then(res => console.log(res))
+    .then(res => {
+      console.log("when Login button is pressed", res.status)
+      if (res.status===200){
+        props.changeState("isAuthenticated", true);
+        
+      }
+    }
+      )
   }
 
 

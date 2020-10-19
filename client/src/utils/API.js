@@ -29,5 +29,8 @@ export default {
   },
   loginUser: function (userCredentials) {
     return axios.post("/api/user/login", userCredentials);
+  },
+  isLoggedIn: () => {
+    return axios.get('/auth/success');
   }
 };
