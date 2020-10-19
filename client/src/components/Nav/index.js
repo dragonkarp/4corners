@@ -19,9 +19,6 @@ function Nav() {
         <li className="nav-item">
           <a className="nav-link" href="/Resources">Resources</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/Login">Login</a>
-        </li>
       </ul>
     </nav>
     </Router>
