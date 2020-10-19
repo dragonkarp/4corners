@@ -18,3 +18,11 @@ a.nav-link {
 a {
     color: white;
 }
+
+.navLogo {
+    flex-basis: 25px;
+    height: 100%;
+    max-width: 25px;
+    max-height: 25px;
+    object-fit: cover;
+}

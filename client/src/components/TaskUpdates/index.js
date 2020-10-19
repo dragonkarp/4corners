@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { List, ListItem } from "../List";
 import API from "../../utils/API";
 import taskUpdates from "./style.css";
+import Moment from 'react-moment';  
 
 function TaskUpdates() {
 
@@ -67,7 +68,7 @@ function TaskUpdates() {
                             </div>
                             <div>
                                 <strong>
-                                    Last updated: {task.lastUpdated}
+                                    Last updated: <Moment format="YYYY-MM-DD HH:mm">{task.lastUpdated}</Moment>
                                 </strong>
                             </div>
                             {/* </Link> */}

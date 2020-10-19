@@ -1,9 +1,29 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  } 
+
 :root {
     --primary-color: rgb(62, 100, 255);
     --complete-color: #27aa80;
     --text-color: #172b4d;
     --disabled-color: #fad6d6;
     --background-color: #f5eaea;
+
+}
+
+:root {
+    /* background-image: url("../../public/Antelope-Canyon-1024-80.jpg"); */
+
+
+    background-image: url("./Antelope-Canyon-1024-80.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    padding: 0;
+    margin: auto 0;
+    height: 600px;
+    z-index:0;
 }
 
 .row {
@@ -117,7 +137,8 @@ select {
 .col-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    /* margin: 20px; */
+    margin: 10px;
     padding: 20px;
     background-color: var(--background-color);
     border-radius: 5px;
@@ -151,7 +172,8 @@ select {
 }
 
 .modal_overlay {
-    background-color: #F4F5F7;
+    /* background-color: #F4F5F7; */
+    background-color: #F5EAEA;
     border-radius: 2px;
     margin: 48px 0 80px;
     height: 350px;
@@ -186,4 +208,35 @@ select {
 
 .close-btn:hover {
     background-color: #DCDCDC;
+}
+
+button.close-btn {
+    background-color: transparent;
+}
+
+.modalBox {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.loginHeader {
+    background-color: #054F7C;
+    color: white;
+    margin-top: 2rem;
+    /* margin-bottom: 2rem; */
+    padding: 2rem;
+}
+
+.loginLogo {
+    height: 11rem;
+}
+
+/* .navLogo {
+    height: 0.5rem;
+} */
+
+
+div.col {
+    margin: 0px;
 }

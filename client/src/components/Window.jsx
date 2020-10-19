@@ -29,7 +29,7 @@ console.log("Window.jsx " + show);
                 <h2 style={{ flex: "1 90%" , textAlign: "center", color: "darkblue" }}>Task Title: {item.title}</h2>
                 <button className={"close-btn"} onClick={onClose}>X</button>
             </div>
-            <div>
+            <div className="modalBox">
             <br></br>
                 <h3 style={{ textAlign: "left", paddingLeft: "80px" }}>Description</h3>
                 <p  style={{ textAlign: "left", paddingLeft: "80px" }}>{item.description}</p>
