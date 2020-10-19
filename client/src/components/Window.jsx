@@ -32,7 +32,7 @@ console.log("Window.jsx " + show);
             <div>
             <br></br>
                 <h3 style={{ textAlign: "left", paddingLeft: "80px" }}>Description</h3>
-                <p  style={{ textAlign: "left", paddingLeft: "80px" }}>{item.content}</p>
+                <p  style={{ textAlign: "left", paddingLeft: "80px" }}>{item.description}</p>
                 <h5 style={{ textAlign: "right", paddingRight: "100px" }}>Status</h5>
                 {/* this just capitalizes the status */}
                 <p style={{ textAlign: "right", paddingRight: "100px" }}>{item.icon} {`${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`}</p>

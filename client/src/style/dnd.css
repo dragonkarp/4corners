@@ -130,7 +130,7 @@ select {
     margin-top: 0;
 }
 
-.col {
+.dnd .col {
     min-height: 300px;
     max-width: 300px;
     width: 300px;

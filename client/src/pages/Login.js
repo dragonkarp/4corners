@@ -67,7 +67,7 @@ function Login() {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col className={"col-md-6"}>
           <h2>Login</h2>
           <Form>
             <Form.Group controlId="formBasicEmail">
@@ -83,7 +83,7 @@ function Login() {
           <Button variant="primary" type="submit" onClick={handleSubmitLogin}>Login</Button>
         </Col>
 
-        <Col>
+        <Col  className={"col-md-6"}>
           <h2>Sign Up</h2>
           <Form>
             <Form.Group controlId="formBasicEmail">
