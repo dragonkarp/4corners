@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 //import DeleteBtn from "../components/DeleteBtn";
 import { List, ListItem } from "../List";
 import API from "../../utils/API";
-import taskUpdates from "./style.css";
-import Moment from 'react-moment';  
+import myTasks from "./style.css";
 
-function TaskUpdates() {
+function MyTasks(props) {
+    console.log("myTasks props. Did i get firstname of user? ", props);
+
 
     const [tasks, setTasks] = useState([]);
+
+    const [userName, setUserName] = useState({});
+
 
 
     useEffect(() => {
@@ -16,12 +20,20 @@ function TaskUpdates() {
     }, [])
 
     // Loads all tasks and sets them to tasks
-    function loadTasks() {
+    function loadTasks(props) {
+        console.log("am i getting any props to loadTasks: ", props);
+
         API.getTasks()
             .then(res => {
-                console.log("reloaded: ", res.data);
-                setTasks(res.data);
-                console.log("tasks: ", tasks);
+                console.log("myTasks reloaded: ", res.data);
+                (res.data.map(data => {
+                    console.log("finding user from mytasks: ", data.user.toLowerCase());
+                     if(data.user.toLowerCase() === userName.toLowerCase()){
+                        setTasks(res.data);
+                        console.log("did I get mytasks?: ", tasks);
+                     }
+                }
+                ))
             }
             )
             .catch(err => console.log(err));
@@ -34,7 +46,6 @@ function TaskUpdates() {
 
         var timerInterval = setInterval(function () {
             secondsLeft--;
-
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
                 loadTasks();
@@ -49,7 +60,7 @@ function TaskUpdates() {
 
     return (
 
-        <div className="taskUpdates">
+        <div className="myTasks">
             {tasks.length ? (
                 <List>
                     {tasks.map(task => (
@@ -67,16 +78,14 @@ function TaskUpdates() {
                             </div>
                             <div>
                                 <strong>
-                                    Last updated: <Moment format="YYYY-MM-DD HH:mm">{task.lastUpdated}</Moment>
+                                    Last updated: {task.lastUpdated}
                                 </strong>
                             </div>
-                            {/* </Link> */}
-                            {/* <DeleteBtn onClick={() => deleteTask(task._id)} /> */}
                         </ListItem>
                     ))}
                 </List>
             ) : (
-                    <h3>No Results to Display</h3>
+                    <h3>You have no tasks assigned to you!</h3>
                 )}
         </div>
 
@@ -86,4 +95,4 @@ function TaskUpdates() {
 
 }
 
-export default TaskUpdates;
+export default MyTasks;

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import "./style.css";
 import logo from "../Nav/4corners_white.png";
 
-function Nav() {
+function Nav(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <img className="navLogo" src={logo} alt="Logo"/>
@@ -12,13 +12,13 @@ function Nav() {
       </Link>
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <Link className="nav-link" to="/Person">Daria's Page</Link>
+          <Link className="nav-link" to="/Person">{props.userData.firstName}'s Page</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/Team">Team Board</Link>
+          <Link className="nav-link" to="/Team">Kanban Board</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/Resources">Resources</Link>
+          <Link className="nav-link" to="/Resources">LookUp Resources</Link>
         </li>
       </ul>
     </nav>
