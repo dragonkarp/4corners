@@ -21,7 +21,7 @@ const Input = (props) => (
 
 
 function Resources() {
-  const [query, setQuery] = React.useState('REACT TASK LIST');
+  const [query, setQuery] = React.useState(''); //input bar
   const [youtubeList, setyoutubeList] = React.useState(null);
   const [githubList, setgithubList] = React.useState(null);
   // const [type, setType] = React.useState("")
@@ -113,7 +113,7 @@ function Resources() {
 
                   </div>
 
-                  <img alt="" src={items.owner.avatar_url + "s=100"} />
+                  <img width="100" height="100" alt="" src={items.owner.avatar_url + "s=100"} />
                 </li>
               ))}
             </ul>
