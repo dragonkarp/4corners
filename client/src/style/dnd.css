@@ -1,34 +1,14 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  } 
-
 :root {
     --primary-color: rgb(62, 100, 255);
     --complete-color: #27aa80;
     --text-color: #172b4d;
     --disabled-color: #fad6d6;
     --background-color: #f5eaea;
-
 }
 
-:root {
-    /* background-image: url("../../public/Antelope-Canyon-1024-80.jpg"); */
-
-
-    background-image: url("./Antelope-Canyon-1024-80.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; 
-    padding: 0;
-    margin: auto 0;
-    height: 600px;
-    z-index:0;
-}
-
-.row {
+/* .row {
     background-color: lightblue;
-}
+} */
 
 .dnd html {
     background: rgb(0,73,191);
@@ -137,9 +117,8 @@ select {
 .col-wrapper {
     display: flex;
     flex-direction: column;
-    /* margin: 20px; */
     margin: 10px;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--background-color);
     border-radius: 5px;
 }
@@ -153,8 +132,8 @@ select {
 
 .dnd .col {
     min-height: 300px;
-    max-width: 300px;
-    width: 300px;
+    max-width: 275px;
+    width: 275px;
 }
 
 .highlight-region {
@@ -162,7 +141,7 @@ select {
 }
 
 .page-header {
-    background-color: #054F7C;
+    background-color: black;
     padding: 20px;
     color: white;
     font-size: 30px;
@@ -220,23 +199,38 @@ button.close-btn {
     border-radius: 5px;
 }
 
-.loginHeader {
-    background-color: #054F7C;
-    color: white;
-    margin-top: 2rem;
-    /* margin-bottom: 2rem; */
-    padding: 2rem;
-}
-
-.loginLogo {
-    height: 11rem;
-}
-
-/* .navLogo {
-    height: 0.5rem;
-} */
-
-
 div.col {
     margin: 0px;
+}
+
+@media screen and (max-width: 1260px) {
+    .dnd .col {
+        min-height: 300px;
+        max-width: 250px;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .dnd .col {
+        min-height: 300px;
+        max-width: 220px;
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .dnd .col {
+        min-height: 300px;
+        min-width: 350px;
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .dnd .col {
+        min-height: 300px;
+        min-width: 275px;
+        width: 275px;
+    }
 }
