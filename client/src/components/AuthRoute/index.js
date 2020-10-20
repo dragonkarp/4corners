@@ -41,7 +41,7 @@ function AuthRoute() {
                 (
                     <BrowserRouter>
                         <Nav  userData={userData} />
-                        <Redirect to="/Team" />
+                        <Redirect to="/Person" />
                         <Route exact path={"/Person"}>
                             <Person userData={userData} className={personRoot}/>
                         </Route>
