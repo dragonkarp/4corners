@@ -5,31 +5,39 @@ import API from "../../utils/API";
 import taskUpdates from "./style.css";
 import Moment from 'react-moment';  
 
-function TaskUpdates() {
-
+function TaskUpdates(props) {
     const [tasks, setTasks] = useState([]);
-
+    const [userInfo, setUserInfo] = useState(props.userInfo)
 
     useEffect(() => {
+        console.log("Props data passed from upper level is: ",userInfo);
         setTime();
-        loadTasks();
+        loadTasks(userInfo);
     }, [])
 
     // Loads all tasks and sets them to tasks
-    function loadTasks() {
+    function loadTasks(userInfoInput) {
         API.getTasks()
             .then(res => {
-                console.log("reloaded: ", res.data);
-                setTasks(res.data);
+
+                // Map tasks that don't belong to the logged in user into othersTasks.
+                // Set othersTasks to tasks state.
+                let othersTasks = [];
+                res.data.map(task => {
+                    if (userInfoInput.toLowerCase() !== task.user.toLowerCase()) {
+                        othersTasks.push(task)
+                        console.log("test line")
+                    }
+                })
+
+                setTasks(othersTasks)
                 console.log("tasks: ", tasks);
-            }
-            )
+            })
             .catch(err => console.log(err));
-    };
+    }
+
 
     function setTime() {
-
-
         let secondsLeft = 10;
 
         var timerInterval = setInterval(function () {
@@ -55,10 +63,11 @@ function TaskUpdates() {
                     {tasks.map(task => (
                         <ListItem key={task._id}>
                             {/* <Link to={"/tasks/" + task._id}> */}
-                            <div><strong>
-                                Task Title: {task.title} 
-                            <div>Assigned to: {task.user}</div>
-                            </strong>
+                            <div>
+                                <strong>
+                                    Task Title: {task.title} 
+                                    <div>Assigned to: {task.user}</div>
+                                </strong>
                             </div>
                             <div>
                                 <strong>

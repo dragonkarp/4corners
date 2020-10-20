@@ -12,15 +12,13 @@ function MyTasks(props) {
 
     const [userName, setUserName] = useState("");
 
-
-
     useEffect(() => {
         setUserName(props.userInfo)
     }, [])
 
     useEffect(() => {
         setTime();
-         loadTasks(userName);
+        loadTasks(userName);
     }, [userName])
 
 

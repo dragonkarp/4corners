@@ -13,44 +13,44 @@ function Person(props) {
   console.log("person props", props.userData.firstName);
 
   // Setting our component's initial state
-  const [tasks, setTasks] = useState([])
+ // const [tasks, setTasks] = useState([])
 
 
   return (
-    <div className="personRoot">
-      <Container fluid>
-  
-        <Row>
-          <Col size="md-4">
+  <div className="personRoot">
+    <Container fluid>
+      <Row>
+        <Col size="md-4">
+        <div  style={{margin:"10px" }} className="chat">
+            <header>
+            <h3  style={{textAlign:"center"}}>Tasks Assigned to Others</h3>
+            </header>
+            <section>
+           {props.userData.firstName ? (<TaskUpdates userInfo={props.userData.firstName} />):(<p></p>)}
+            </section> {/* this is to make sure we get data from server first. */}
+        </div>
+        </Col>
 
-            <div style={{ margin: "10px" }} className="chat">
-              <header>
-                <h3 style={{ textAlign: "center" }}>Tasks Assigned to Others</h3>
-              </header>
-              <section>
-                <TaskUpdates />
-              </section>
+        <Col size="md-4 sm-12">
+        <div   style={{margin:"10px" }} className="chat">
+          <header>
+            <h3 style={{textAlign:"center"}}>Tasks Assigned to You</h3>
+          </header>
+          <section>
+           {/* <MyTasks  userInfo={props.userData.firstName} /> */}
+          {props.userData.firstName ? (<MyTasks userInfo={props.userData.firstName} />):(<p></p>)} 
+            </section>
             </div>
+        </Col>
 
-          </Col>
-          <Col size="md-4 sm-12">
-            <div style={{ margin: "10px" }} className="chat">
-              <header>
-                <h3 style={{ textAlign: "center" }}>Tasks Assigned to You</h3>
-              </header>
-              <section>
-                <MyTasks userInfo={props.userData.firstName} />
-              </section>
-            </div>
-          </Col>
-          <Col size="md-4 sm-12">
-            <div>
-              <Chat className={chat} />
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+        <Col size="md-4 sm-12">
+          <div>
+          <Chat className={chat} />
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  </div>
   );
 }
 
