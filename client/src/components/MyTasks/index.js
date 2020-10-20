@@ -12,8 +12,6 @@ function MyTasks(props) {
 
     const [userName, setUserName] = useState("");
 
-
-
     useEffect(() => {
         setUserName(props.userInfo)
     }, [])
