@@ -30,5 +30,10 @@ module.exports = {
     // `req.user` contains the authenticated user.
     console.log("User created:", req.user)
     res.json(req.user);
+  },
+  logoutUser: function (req, res) { // Mike, ogout test controller
+    console.log("User logged out:", req.user);
+    req.logout();
+    res.redirect("/");
   }
 }
