@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import API from "../utils/API";
-
+import { Grid, Form, Row, Col } from "react-bootstrap";
 
 const Header = ({ loadTasks }) => {
 
@@ -35,7 +35,7 @@ function OpenModal(props) {
 
     useEffect(() => {
         assigneeOptions();
-        }, [])
+    }, [])
 
     function assigneeOptions() {
         API.getTasks()
@@ -44,47 +44,47 @@ function OpenModal(props) {
                 setAssignee(res.data.map(task => {
                     console.log(task.user);
                     return task.user
-                  }).reduce((acc, item) => acc.includes(item) ? acc : [...acc, item],[]))
+                }).reduce((acc, item) => acc.includes(item) ? acc : [...acc, item], []))
             })
             .catch(err => console.log(err));
     };
 
-      // Login user functions.
-  const [creatingTask, setCreatingTask] = useState({
-    user: "",
-    title: "",
-    description: "",
-    status: "Open",
-    icon: "⭕️",
-    lastUpdated: new Date(Date.now())
-  });
+    // Login user functions.
+    const [creatingTask, setCreatingTask] = useState({
+        user: "",
+        title: "",
+        description: "",
+        status: "Open",
+        icon: "⭕️",
+        lastUpdated: new Date(Date.now())
+    });
 
-  const handleInputChange = e => {
-    const {name, value} = e.target
-    setCreatingTask({ ...creatingTask, [name]: value })
-  }
+    const handleInputChange = e => {
+        const { name, value } = e.target
+        setCreatingTask({ ...creatingTask, [name]: value })
+    }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.log("task created after clicking submit: ", creatingTask)
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log("task created after clicking submit: ", creatingTask)
 
-    API.saveTask(creatingTask)
-    .then(res => {
-      if (res.status===200){
-        console.log("posted successfully");
-      }
-      props.onClose();
-      props.loadTasks();
+        API.saveTask(creatingTask)
+            .then(res => {
+                if (res.status === 200) {
+                    console.log("posted successfully");
+                }
+                props.onClose();
+                props.loadTasks();
+
+            }
+            )
+
+        //load tasks in items with loadtasks()
+
+
+        //close the modal
 
     }
-      )
-
-      //load tasks in items with loadtasks()
-
-
-      //close the modal
-
-  }
 
 
     return (
@@ -104,32 +104,44 @@ function OpenModal(props) {
             </div>
             <div>
                 <br></br>
-                <form>
-                <h2 style={{ textAlign: "left", paddingLeft: "80px" }}>Title</h2>
-                <input name="title" type="text" placeholder="Title" onChange={handleInputChange} type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
-                <h2 style={{ textAlign: "left", paddingLeft: "80px" }}>Description</h2>
-                <input name="description" type="text" placeholder="Description" onChange={handleInputChange} type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
-                <h4>status: "Open"</h4>
-                <h4>icon: ⭕️</h4>
-                <p style={{ textAlign: "left", paddingLeft: "80px" }}>Assign to: </p>
-                <select name="user" type="text" onChange={handleInputChange} class="browser-default custom-select custom-select-lg mb-3">
-                {assignee.map(assignee => {
-                        console.log("assigned to options: ", assignee)
-                        return(
-                        <option value={assignee}>{assignee}</option>
-                        )
-                    })}
-                </select>
-                </form>
+                <Form inline>
+                    <Form.Row>
+                        <Form.Group className="ml-3">
+                            <Form.Label><h2>Title</h2></Form.Label>
+                            <Form.Control name="title" type="text" placeholder="Title" onChange={handleInputChange} type='text' />
+                        </Form.Group>
+                        <Form.Group className="ml-3 mr-3">
+                            <Form.Label><h2 >Description</h2></Form.Label>
+                            <Form.Control name="description" type="text" placeholder="Description" onChange={handleInputChange} type='text' />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group className="ml-3 mr-3">
+                            <Form.Label><h4>status: "Open"</h4></Form.Label>
+                            <Form.Label><h4>icon: ⭕️</h4></Form.Label>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group className="ml-3 mr-3">
+                            <Form.Label><p >Assign to: </p></Form.Label>
+                            <select name="user" type="text" onChange={handleInputChange} class="browser-default custom-select custom-select-lg mb-3">
+                                {assignee.map(assignee => {
+                                    console.log("assigned to options: ", assignee)
+                                    return (
+                                        <option value={assignee}>{assignee}</option>
+                                    )
+                                })}
+                            </select>
+                        </Form.Group>
+
+                    </Form.Row>
+                </Form>
                 <button onClick={handleSubmit}>Submit</button>
 
             </div>
 
-        </Modal>
+        </Modal >
     )
 
 
 }
-
-
-

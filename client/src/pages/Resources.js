@@ -68,7 +68,7 @@ function Resources() {
     <div>
       <Tabs>
       <div className="app">
-      <form>
+      <form id="resources">
         <input autoFocus value={query} onChange={e => setQuery(e.target.value)} />
         <button 
         onClick={e =>search(e)} 
