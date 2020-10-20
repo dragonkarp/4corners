@@ -6,7 +6,6 @@ import "../components/fileUpload/style.css";
 import Tabs from  "../components/Tabs/Tabs";
 import "../components/fileUpload/useFileHandlers"
 import useFileHandlers from '../components/fileUpload/useFileHandlers'
-import  '../components/fileUpload/useFileHandlers'
 
 
 const Input = (props) => (
