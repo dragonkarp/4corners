@@ -10,30 +10,42 @@ function MyTasks(props) {
 
     const [tasks, setTasks] = useState([]);
 
-    const [userName, setUserName] = useState({});
+    const [userName, setUserName] = useState("");
 
 
 
     useEffect(() => {
-        setTime();
-        loadTasks();
+        setUserName(props.userInfo)
     }, [])
 
-    // Loads all tasks and sets them to tasks
-    function loadTasks(props) {
-        console.log("am i getting any props to loadTasks: ", props);
+    useEffect(() => {
+        setTime();
+         loadTasks(userName);
+    }, [userName])
 
-        API.getTasks()
+
+
+    // Loads all tasks and sets them to tasks
+    async function loadTasks(userName) {
+
+        if(!userName) return;
+
+        await console.log("am i getting any props to loadTasks: ", userName);
+
+        await API.getTasks()
             .then(res => {
                 console.log("myTasks reloaded: ", res.data);
+                let taskData = [];
                 (res.data.map(data => {
+                    console.log("current username is: ", userName)
                     console.log("finding user from mytasks: ", data.user.toLowerCase());
                      if(data.user.toLowerCase() === userName.toLowerCase()){
-                        setTasks(res.data);
+                         taskData.push(data)
                         console.log("did I get mytasks?: ", tasks);
                      }
                 }
                 ))
+                setTasks(taskData);
             }
             )
             .catch(err => console.log(err));
@@ -48,8 +60,7 @@ function MyTasks(props) {
             secondsLeft--;
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
-                loadTasks();
-                console.log("reloaded data");
+                loadTasks(userName);
                 setTime();
             }
 
@@ -61,7 +72,7 @@ function MyTasks(props) {
     return (
 
         <div className="myTasks">
-            {tasks.length ? (
+            {tasks.length  ? (
                 <List>
                     {tasks.map(task => (
                         <ListItem key={task._id}>

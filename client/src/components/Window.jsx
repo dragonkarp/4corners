@@ -16,9 +16,6 @@ console.log("Window.jsx " + show);
 
 
     return (
-        //api and how its setup and that's where the below 
-        //propnames
-        //overlay is to make the rest of the area dark
         <Modal
             isOpen={show}
             onRequestClose={onClose}

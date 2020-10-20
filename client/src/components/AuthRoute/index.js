@@ -30,26 +30,7 @@ function AuthRoute() {
         changeState: (name, value) => setState({ ...state, [name]: value })
     })
 
-    // useEffect(() => {
-    //     console.log("useEffect fires up");
-    //     checkLatestUser();
-    // }, [state.isAuthenticated])
 
-    // const checkLatestUser = () => {
-    //     await API.isLoggedIn()
-    //         .then(async res => {
-    //             console.log("response in checkAuth function :", res);
-    //             if (res.data.success === true) {
-    //                 setState({
-    //                     ...state,
-    //                     id: res.data.user.id,
-    //                     isAuthenticated: true,
-    //                 });
-    //             };
-    //         });
-
-    //     console.log("The userData userful for person page: ", userData);
-    // };
 
 
     return (

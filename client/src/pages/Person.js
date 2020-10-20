@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-//import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -9,59 +8,14 @@ import Chat from "../components/Chat";
 import chat from "../components/Chat/chat.css";
 import TaskUpdates from "../components/TaskUpdates";
 import MyTasks from "../components/MyTasks";
-// import { Input, TextArea, FormBtn } from "../components/Form";
-// import { TextArea, FormBtn } from "../components/Form";
+
 
 function Person(props) {
   console.log("person props", props.userData.firstName);
 
   // Setting our component's initial state
   const [tasks, setTasks] = useState([])
-  // const [formObject, setFormObject] = useState({})
 
-  // Load all tasks and store them with setTasks
-  // useEffect(() => {
-  //   console.log("am I getting userData: ", props.userData.firstName);
-  //   loadTasks()
-  // }, [])
-
-  // Loads all tasks and sets them to tasks
-  // function loadTasks() {
-  //   API.getTasks()
-  //     .then(res =>
-  //       setTasks(res.data)
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  // Deletes a task from the database with a given id, then reloads tasks from the db
-  // function deleteTask(id) {
-  //   API.deleteTask(id)
-  //     .then(res => loadTasks())
-  //     .catch(err => console.log(err));
-  // }
-
-  // Handles updating component state when the user types into the input field
-  // function handleInputChange(event) {
-  //   const { name, value } = event.target;
-  //   setFormObject({ ...formObject, [name]: value })
-  // };
-
-  // When the form is submitted, use the API.saveTask method to save the task data
-  // Then reload tasks from the database
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-
-  //   // if (formObject.user && formObject.taskname) {
-  //   if (formObject.taskname) {
-  //     API.saveTask({
-  //       // user: formObject.user,
-  //       taskname: formObject.taskname
-  //     })
-  //       .then(res => loadTasks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
 
   return (
     <Container fluid>
