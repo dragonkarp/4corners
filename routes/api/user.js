@@ -17,5 +17,8 @@ router.route("/signup")
 router
     .post("/login", passport.authenticate('local'), userController.loginUser)
 
+router.route("/logout")
+    .get(userController.logoutUser) // Mike, logout test route
+
 
 module.exports = router;
