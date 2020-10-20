@@ -2,8 +2,8 @@ body {
     background-color: #282c34;
   }
 
-  .col-md-4 {
-    background-color:lightblue!important;
+  .chat .col-md-4 {
+    background-color:lightblue;
   }
   .chat {
     text-align: center;

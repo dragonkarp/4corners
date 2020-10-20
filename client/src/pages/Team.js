@@ -10,6 +10,9 @@ import Homepage from "./Homepage";
 import Header from "../components/Header";
 
 import dnd from "../style/dnd.css";
+import teamStyle from "../style/style.css";
+import logo from "../../src/components/Nav/4corners_white.png";
+
 
 
 function Team() {
@@ -33,11 +36,12 @@ function loadTasks() {
 }
 
     return (
-
+        <div className="teamRoot">
         <DndProvider className={dnd} backend={HTML5Backend}>
         <Header loadTasks={loadTasks}/>
         <Homepage items={items} setItems={setItems} className={dnd}/>
         </DndProvider>
+        </div>
     );
 }
 
