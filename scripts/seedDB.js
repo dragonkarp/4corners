@@ -5,7 +5,7 @@ dotenv.config()
 
 // This file empties the Tasks collection and inserts the tasks below
 
-mongoose.connect(process.env.MONGODB_URI  || "mongodb://localhost/reacttasklist",   {
+mongoose.connect(process.env.MONGODB_URI  || "mongodb+srv://user:69mFuTJutYZw2Qoc@clusterexplore.uqtfh.mongodb.net/reacttasklist?retryWrites=true&w=majority",   {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
@@ -14,18 +14,9 @@ mongoose.connect(process.env.MONGODB_URI  || "mongodb://localhost/reacttasklist"
 
 const taskSeed = [
   {
-    user: "Michael",
-    title: "Setup Kanban Board",
-    description: "Use React Dnd to set this up",
-    status: "Open",
-    icon: "⭕️",
-    lastUpdated: new Date(Date.now())
-  },
-
-  {
-    user: "Margaret",
-    title: "Setup Live Chat",
-    description: "Use Socket IO to set this up",
+    user: "Daria",
+    title: "Debugging main page Redirect",
+    description: "Change the main page from board to user page",
     status: "Open",
     icon: "⭕️",
     lastUpdated: new Date(Date.now())
@@ -33,8 +24,34 @@ const taskSeed = [
 
   {
     user: "Daria",
-    title: "Resource page",
-    description: "Interact with Youtube api to return results",
+    title: "Drag and Drop functionality",
+    description: "Add drag and drop divs and send updates to the backend",
+    status: "Open",
+    icon: "⭕️",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Daria",
+    title: "Fix Chat Component",
+    description: "Modify styling to to resize the chat div",
+    status: "Open",
+    icon: "⭕️",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Margaret",
+    title: "Styling for Resource page",
+    description: "Make background Solid color",
+    status: "In Progress",
+    icon: "🔆️",
+    lastUpdated: new Date(Date.now())
+  },
+  {
+    user: "Margaret",
+    title: "Combining Passport code",
+    description: "Refactor code and add missing pieces",
     status: "In Progress",
     icon: "🔆️",
     lastUpdated: new Date(Date.now())
@@ -42,8 +59,17 @@ const taskSeed = [
 
   {
     user: "Nargiza",
-    title: "User Authentication",
-    description: "Using passport.js and keep track of user data",
+    title: "Debug navbar under Resource page",
+    description: "Currenlty we don't see github look in tab section ",
+    status: "Done",
+    icon: "✅",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Nargiza",
+    title: "File Upload feature",
+    description: "Add support for a user to add useful resources",
     status: "Done",
     icon: "✅",
     lastUpdated: new Date(Date.now())
@@ -51,8 +77,35 @@ const taskSeed = [
 
   {
     user: "Heribert",
-    title: "User Profile page setup",
-    description: "set up profile page by combining all elements",
+    title: "Modal styling for Create new task",
+    description: "Rearrage the divs so that the form looks aligned",
+    status: "Done",
+    icon: "✅",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Heribert",
+    title: "Youtube api and github api for Resources",
+    description: "Access data from 3rd party api to pull into resources",
+    status: "Done",
+    icon: "✅",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Michael",
+    title: "Initial setup for Login functionality",
+    description: "Look into Authentication, creating user, and redirecting users",
+    status: "Done",
+    icon: "✅",
+    lastUpdated: new Date(Date.now())
+  },
+
+  {
+    user: "Michael",
+    title: "Debug Task board",
+    description: "Currently user tasks are in irrelevant divs. Remove them",
     status: "Done",
     icon: "✅",
     lastUpdated: new Date(Date.now())

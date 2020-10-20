@@ -1,3 +1,6 @@
+html {
+  background-image: url(../style/Antelope-Canyon-1024-80.jpg);
+}
 body {
     background: #f7f7f7;
   }
@@ -6,7 +9,7 @@ body {
     margin: 2em;
   }
   form {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr auto;
     gap: 1em;
     margin-bottom: 1em;
