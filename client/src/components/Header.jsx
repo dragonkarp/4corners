@@ -3,29 +3,14 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import API from "../utils/API";
 
-const Header = () => {
+
+const Header = ({ loadTasks }) => {
 
     const [show, setShow] = useState(false);
     // const [assignee, setAssignee] = useState([]);
 
     const OnOpen = () => setShow(true);
     const onClose = () => setShow(false);
-
-    // function assigneeOptions() {
-    //     API.getTasks()
-    //         .then(res => {
-    //             console.log("getting assigneeOptions: ", res.data);
-    //             setAssignee(res.data.map(task => {
-    //                 console.log(task.user);
-    //                 return (
-    //                     [...assignee, task.user]
-    //                     )
-    //             }))
-    //         })
-    //         .catch(err => console.log(err));
-
-    //         console.log("assigneeOptions: ", assignee)
-    // };
 
 
     return (
@@ -34,6 +19,7 @@ const Header = () => {
             <OpenModal
                 onClose={onClose}
                 show={show}
+                loadTasks={loadTasks}
             />
         </div>
     )
@@ -57,10 +43,8 @@ function OpenModal(props) {
                 console.log("getting assigneeOptions: ", res.data);
                 setAssignee(res.data.map(task => {
                     console.log(task.user);
-                    return (
-                        [...assignee, task.user]
-                        )
-                }))
+                    return task.user
+                  }).reduce((acc, item) => acc.includes(item) ? acc : [...acc, item],[]))
             })
             .catch(err => console.log(err));
     };
@@ -89,8 +73,17 @@ function OpenModal(props) {
       if (res.status===200){
         console.log("posted successfully");
       }
+      props.onClose();
+      props.loadTasks();
+
     }
       )
+
+      //load tasks in items with loadtasks()
+
+
+      //close the modal
+
   }
 
 
