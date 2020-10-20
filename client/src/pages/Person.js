@@ -9,7 +9,6 @@ import chat from "../components/Chat/chat.css";
 import TaskUpdates from "../components/TaskUpdates";
 import MyTasks from "../components/MyTasks";
 
-
 function Person(props) {
   console.log("person props", props.userData.firstName);
 
@@ -18,37 +17,40 @@ function Person(props) {
 
 
   return (
-    <Container fluid>
-      <Row>
-        <Col size="md-4">
+    <div className="personRoot">
+      <Container fluid>
+  
+        <Row>
+          <Col size="md-4">
 
-        <div  style={{margin:"10px" }} className="chat">
-            <header>
-            <h3  style={{textAlign:"center"}}>Tasks Assigned to Others</h3>
-            </header>
-            <section>
-            <TaskUpdates/>
-            </section>
-        </div>
-
-        </Col>
-        <Col size="md-4 sm-12">
-        <div   style={{margin:"10px" }} className="chat">
-          <header>
-            <h3 style={{textAlign:"center"}}>Tasks Assigned to You</h3>
-          </header>
-          <section>
-          <MyTasks userInfo={props.userData.firstName} />
-            </section>
+            <div style={{ margin: "10px" }} className="chat">
+              <header>
+                <h3 style={{ textAlign: "center" }}>Tasks Assigned to Others</h3>
+              </header>
+              <section>
+                <TaskUpdates />
+              </section>
             </div>
-        </Col>
-        <Col size="md-4 sm-12">
-          <div>
-          <Chat className={chat} />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+
+          </Col>
+          <Col size="md-4 sm-12">
+            <div style={{ margin: "10px" }} className="chat">
+              <header>
+                <h3 style={{ textAlign: "center" }}>Tasks Assigned to You</h3>
+              </header>
+              <section>
+                <MyTasks userInfo={props.userData.firstName} />
+              </section>
+            </div>
+          </Col>
+          <Col size="md-4 sm-12">
+            <div>
+              <Chat className={chat} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 
