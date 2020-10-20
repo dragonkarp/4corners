@@ -14,9 +14,7 @@ function Nav(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <img className="navLogo" src={logo} alt="Logo"/>
-      <Link to="/Person" className="navbar-brand">
-        React Task List
-      </Link>
+  
       <ul className="nav nav-tabs">
         <li className="nav-item">
           <Link className="nav-link" to="/Person">{props.userData.firstName}'s Page</Link>
@@ -29,7 +27,7 @@ function Nav(props) {
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/" onClick={logout}>Logout</a>
-        </li> {/* Mike, logout test button */}
+        </li> 
       </ul>
     </nav>
   );
