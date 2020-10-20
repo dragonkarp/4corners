@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URI  || "mongodb://localhost/reacttasklist"
 
 const taskSeed = [
   {
-    user: "Michael Li",
+    user: "Michael",
     title: "Setup Kanban Board",
     description: "Use React Dnd to set this up",
     status: "Open",
