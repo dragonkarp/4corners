@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Item from "../components/Item";
 import DropWrapper from "../components/DropWrapper";
 import Col from "../components/Col";
@@ -26,24 +26,8 @@ const statuses = [{
 
 
 
-const Homepage = () => {
+const Homepage = ({items, setItems}) => {
 
-    const [items, setItems] = useState([]);
-    console.log("items: ", items);
-
-    useEffect(() => {
-        loadTasks();
-    }, []);
-
-    function loadTasks() {
-        // Add code here to get all books from the database and store them using setBooks
-        API.getTasks()
-            .then((res) => {
-                setItems(res.data)
-            })
-            .catch(err => console.log(err))
-
-    }
 
     // this is to update statuses when we move the items
     const onDrop = async (item, monitor, status) => {

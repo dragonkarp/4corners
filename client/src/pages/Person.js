@@ -9,7 +9,6 @@ import chat from "../components/Chat/chat.css";
 import TaskUpdates from "../components/TaskUpdates";
 import MyTasks from "../components/MyTasks";
 
-
 function Person(props) {
   console.log("person props", props.userData.firstName);
 
@@ -18,6 +17,7 @@ function Person(props) {
 
 
   return (
+  <div className="personRoot">
     <Container fluid>
       <Row>
         <Col size="md-4">
@@ -50,6 +50,7 @@ function Person(props) {
         </Col>
       </Row>
     </Container>
+  </div>
   );
 }
 

@@ -11,8 +11,9 @@ import Person from "../../pages/Person";
 import Team from "../../pages/Team";
 import Resources from "../../pages/Resources";
 import Login from "../../pages/Login";
-
-
+import loginStyle from "../../style/style.css";
+import personRoot from "../../style/style.css";
+import teamRoot from "../../style/style.css";
 
 function AuthRoute() {
     //const [loading, setLoading] = useState(true)
@@ -40,12 +41,12 @@ function AuthRoute() {
                 (
                     <BrowserRouter>
                         <Nav  userData={userData} />
-                        <Redirect to="/Person" />
+                        <Redirect to="/Team" />
                         <Route exact path={"/Person"}>
-                            <Person userData={userData} />
+                            <Person userData={userData} className={personRoot}/>
                         </Route>
                         <Route exact path="/Team">
-                            <Team />
+                            <Team className={teamRoot}/>
                         </Route>
                         <Route exact path="/Resources">
                             <Resources username={userData.username} changeState={state.changeState} />
@@ -53,7 +54,7 @@ function AuthRoute() {
                     </BrowserRouter>)
 
                 : (
-                    <Route><Login firstName={userData} changeUserData={userData.changeUserData} isAuthenticated={state.isAuthenticated} changeState={state.changeState} />
+                    <Route><Login className={loginStyle} firstName={userData} changeUserData={userData.changeUserData} isAuthenticated={state.isAuthenticated} changeState={state.changeState} />
                         <Redirect to="/" />
                     </Route>
                 )}
