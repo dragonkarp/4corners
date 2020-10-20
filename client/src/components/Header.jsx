@@ -1,15 +1,55 @@
 //got emoji from getemoji.com
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import API from "../utils/API";
 
 const Header = () => {
 
     const [show, setShow] = useState(false);
-    const [assignee, setAssignee] = useState([]);
+    // const [assignee, setAssignee] = useState([]);
 
     const OnOpen = () => setShow(true);
     const onClose = () => setShow(false);
+
+    // function assigneeOptions() {
+    //     API.getTasks()
+    //         .then(res => {
+    //             console.log("getting assigneeOptions: ", res.data);
+    //             setAssignee(res.data.map(task => {
+    //                 console.log(task.user);
+    //                 return (
+    //                     [...assignee, task.user]
+    //                     )
+    //             }))
+    //         })
+    //         .catch(err => console.log(err));
+
+    //         console.log("assigneeOptions: ", assignee)
+    // };
+
+
+    return (
+        <div className={"row"}>
+            <p className={"page-header"}> Four Corners Dashboard <button onClick={OnOpen} className="btn btn-md btn-primary">Create Task</button></p>
+            <OpenModal
+                onClose={onClose}
+                show={show}
+            />
+        </div>
+    )
+
+}
+
+export default Header;
+
+
+function OpenModal(props) {
+
+    const [assignee, setAssignee] = useState([]);
+
+    useEffect(() => {
+        assigneeOptions();
+        }, [])
 
     function assigneeOptions() {
         API.getTasks()
@@ -23,31 +63,36 @@ const Header = () => {
                 }))
             })
             .catch(err => console.log(err));
-
-            console.log("assigneeOptions: ", assignee)
     };
 
+      // Login user functions.
+  const [creatingTask, setCreatingTask] = useState({
+    user: "",
+    title: "",
+    description: "",
+    status: "Open",
+    icon: "⭕️",
+    lastUpdated: new Date(Date.now())
+  });
 
-    return (
-        <div className={"row"}>
-            <p className={"page-header"}> Four Corners Dashboard <button onClick={OnOpen} className="btn btn-md btn-primary">Create Task</button></p>
-            <OpenModal
-                onClose={onClose}
-                show={show}
-                assigneeOptions={assigneeOptions}
-                assignee={assignee}
-            />
-        </div>
-    )
+  const handleInputChange = e => {
+    const {name, value} = e.target
+    setCreatingTask({ ...creatingTask, [name]: value })
+  }
 
-}
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log("task created after clicking submit: ", creatingTask)
 
-export default Header;
+    API.saveTask(creatingTask)
+    .then(res => {
+      if (res.status===200){
+        console.log("posted successfully");
+      }
+    }
+      )
+  }
 
-
-function OpenModal(props) {
-
-    console.log("props when modal opens", props)
 
     return (
         //api and how its setup and that's where the below 
@@ -66,16 +111,25 @@ function OpenModal(props) {
             </div>
             <div>
                 <br></br>
+                <form>
                 <h2 style={{ textAlign: "left", paddingLeft: "80px" }}>Title</h2>
-                <input type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
+                <input name="title" type="text" placeholder="Title" onChange={handleInputChange} type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
                 <h2 style={{ textAlign: "left", paddingLeft: "80px" }}>Description</h2>
-                <input type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
+                <input name="description" type="text" placeholder="Description" onChange={handleInputChange} type='text' style={{ textAlign: "left", paddingLeft: "80px" }}></input>
+                <h4>status: "Open"</h4>
+                <h4>icon: ⭕️</h4>
                 <p style={{ textAlign: "left", paddingLeft: "80px" }}>Assign to: </p>
-                <select onClick={props.assigneeOptions} class="browser-default custom-select custom-select-lg mb-3">
-                    {props.assignee.map(assignee => {
+                <select name="user" type="text" onChange={handleInputChange} class="browser-default custom-select custom-select-lg mb-3">
+                {assignee.map(assignee => {
                         console.log("assigned to options: ", assignee)
+                        return(
+                        <option value={assignee}>{assignee}</option>
+                        )
                     })}
                 </select>
+                </form>
+                <button onClick={handleSubmit}>Submit</button>
+
             </div>
 
         </Modal>

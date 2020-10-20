@@ -19,7 +19,8 @@ function AuthRoute() {
     const [userData, setUserData] = useState({
         firstName: "",
         lastName: "",
-        username: ""
+        username: "",
+        changeUserData: (name, value) => setUserData({...userData, [name]: value })
     });
 
     const [state, setState] = useState({
@@ -29,24 +30,26 @@ function AuthRoute() {
         changeState: (name, value) => setState({ ...state, [name]: value })
     })
 
-    useEffect(() => {
-        console.log("useEffect fires up");
-        checkAuthentication();
-    }, [state.isAuthenticated])
+    // useEffect(() => {
+    //     console.log("useEffect fires up");
+    //     checkLatestUser();
+    // }, [state.isAuthenticated])
 
-    const checkAuthentication = async () => {
-        await API.isLoggedIn()
-            .then(async res => {
-                console.log("response in checkAuth function :", res);
-                if (res.data.success === true) {
-                    setState({
-                        ...state,
-                        id: res.data.user.id,
-                        isAuthenticated: true,
-                    });
-                };
-            });
-    };
+    // const checkLatestUser = () => {
+    //     await API.isLoggedIn()
+    //         .then(async res => {
+    //             console.log("response in checkAuth function :", res);
+    //             if (res.data.success === true) {
+    //                 setState({
+    //                     ...state,
+    //                     id: res.data.user.id,
+    //                     isAuthenticated: true,
+    //                 });
+    //             };
+    //         });
+
+    //     console.log("The userData userful for person page: ", userData);
+    // };
 
 
     return (
@@ -55,9 +58,9 @@ function AuthRoute() {
 
                 (
                     <BrowserRouter>
-                        <Nav />
+                        <Nav  userData={userData} />
                         <Redirect to="/Person" />
-                        <Route exact path={["/Person"]}>
+                        <Route exact path={"/Person"}>
                             <Person userData={userData} />
                         </Route>
                         <Route exact path="/Team">
@@ -69,7 +72,7 @@ function AuthRoute() {
                     </BrowserRouter>)
 
                 : (
-                    <Route><Login checkAuthentication={checkAuthentication} isAuthenticated={state.isAuthenticated} changeState={state.changeState} />
+                    <Route><Login firstName={userData} changeUserData={userData.changeUserData} isAuthenticated={state.isAuthenticated} changeState={state.changeState} />
                         <Redirect to="/" />
                     </Route>
                 )}
