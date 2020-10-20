@@ -20,7 +20,7 @@ function MyTasks(props) {
 
     useEffect(() => {
         setTime();
-         loadTasks(userName);
+        loadTasks(userName);
     }, [userName])
 
 

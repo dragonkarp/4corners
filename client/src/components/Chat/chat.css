@@ -33,7 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 50vh;
+    /* min-height: 50vh; */ /* This seemed to have no effect on the chat box's height, but was applied to the "My tasks" section. */
     background-color: #f5eaea;
   }
   
