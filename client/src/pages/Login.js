@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
-
+import logo from "../../src/components/Nav/4corners_white.png";
 
 function Login(props) {
   // Create-account states and hooks.
@@ -79,6 +79,16 @@ function Login(props) {
 
   return (
     <Container>
+      <Row className="loginHeader">
+      <Col className={"col-md-3"}>
+        <img className="loginLogo" src={logo} alt="Logo"/>
+      </Col>  
+      <Col className={"col-md-9"}>
+        <h1>4Corners</h1><br/>
+        <h3>Power Your Project</h3><br/>
+        <h5>Manage Task Tracking, Communication, and Resources in One App!</h5> 
+      </Col>
+      </Row>
       <Row>
         <Col className={"col-md-6"}>
           <h2>Login</h2>
