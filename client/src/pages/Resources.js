@@ -1,6 +1,23 @@
 import React from "react";
 import "../components/resourses.css"
+import "../components/Tabs/Tabs";
+import "../components/Tabs/style.css";
+import "../components/fileUpload/style.css";
+import Tabs from  "../components/Tabs/Tabs";
+import "../components/fileUpload/useFileHandlers"
+import useFileHandlers from '../components/fileUpload/useFileHandlers'
+import  '../components/fileUpload/useFileHandlers'
 
+
+const Input = (props) => (
+  <input
+    type='file'
+    accept='image/*'
+    name='img-loader-input'
+    multiple
+    {...props}
+  />
+)
 //resources function Store the query string and the list of YouTube videos in-state using React Hooks. ----Create a search() function that calls our searchYouTube function.-----Set the result of our YouTube search to the new list variable using our setList setter.---After the search has finished, show it in the view, displaying only the interesting properties
 
 
@@ -36,8 +53,22 @@ function Resources() {
     // searchgitHub(query).then(setList);
     // // searchStack(query).then(setList);
   };
+
+  const {
+    files,
+    pending,
+    next,
+    uploading,
+    uploaded,
+    status,
+    onSubmit,
+    onChange,
+  } = useFileHandlers()
+
   return (
-    <div className="app">
+    <div>
+      <Tabs>
+      <div className="app">
       <form>
         <input autoFocus value={query} onChange={e => setQuery(e.target.value)} />
         <button 
@@ -91,6 +122,46 @@ function Resources() {
         )
       }
     </div>
+        <div label="My Files">
+        <div className='container'>
+      <form className='form' onSubmit={onSubmit}>
+        {status === 'FILES_UPLOADED' && (
+          <div className='success-container'>
+            <div>
+              <h2>Congratulations!</h2>
+              <small>You uploaded your files.</small>
+            </div>
+          </div>
+        )}
+        <div>
+          <Input onChange={onChange} />
+          <button type='submit'>Submit</button>
+        </div>
+        <div>
+          {files.map(({ file, src, id }, index) => (
+            <div
+              style={{
+                opacity: uploaded[id] ? 0.2 : 1,
+              }}
+              key={`thumb${index}`}
+              className='thumbnail-wrapper'
+            >
+              <img className='thumbnail' src={src} alt='' />
+              <div className='thumbnail-caption'>{file.name}</div>
+            </div>
+          ))}
+        </div>
+      </form>
+    </div>
+        </div>
+      </Tabs>
+    </div>
+
+
+
+
+
+   
   );
 }
 
