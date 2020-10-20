@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AccordionCollapse } from "react-bootstrap";
 
 export default {
   // Gets all tasks
@@ -29,6 +30,9 @@ export default {
   },
   loginUser: function (userCredentials) {
     return axios.post("/api/user/login", userCredentials);
+  },
+  logoutUser: function () {
+    return axios.get("/api/user/logout")  // Mike, logout test route
   },
   isLoggedIn: () => {
     return axios.get('/auth/success');
