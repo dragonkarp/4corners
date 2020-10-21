@@ -9,11 +9,16 @@ body {
     margin: 2em;
   }
   form {
-    display: flex;
+    display: grid;
     grid-template-columns: 1fr auto;
     gap: 1em;
     margin-bottom: 1em;
   }
+
+  #resources {
+    display: flex;
+  }
+
   button {
     background: #EB6864;
     color: #fff;
@@ -23,6 +28,7 @@ body {
     outline: none;
     padding: 0.5em 1.5em;
   }
+  
   button:active { background-color: #05b; }
   input {
     border: 1px solid #999;

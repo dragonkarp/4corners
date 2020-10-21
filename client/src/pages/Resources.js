@@ -67,6 +67,7 @@ function Resources() {
   return (
     <div>
       <Tabs>
+      <div label="My Youtube/Github Resources">
       <div className="app">
       <form id="resources">
         <input autoFocus value={query} onChange={e => setQuery(e.target.value)} />
@@ -120,6 +121,7 @@ function Resources() {
           )
         )
       }
+    </div>
     </div>
         <div label="My Files">
         <div className='container'>
@@ -192,26 +194,26 @@ async function searchgitHub(q2) {
   return results.items;
 }
 
-async function searchStack (q3) {
-  q3 = encodeURIComponent(q3);
-  const response = await fetch("https://stackoverflowstefan-skliarovv1.p.rapidapi.com/getAllAnswers", {
-	"method": "POST",
-	"headers": {
-		"x-rapidapi-host": "StackOverflowstefan-skliarovV1.p.rapidapi.com",
-		"x-rapidapi-key": "db25511fd0msh61068917cdb3be5p18c83ajsn1102ec281d8e",
-		"content-type": "application/x-www-form-urlencoded"
-	},
-	"body": {}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.log(err);
-});
-const body = await response.json();
-  console.log(body);
-}
+// async function searchStack (q3) {
+//   q3 = encodeURIComponent(q3);
+//   const response = await fetch("https://stackoverflowstefan-skliarovv1.p.rapidapi.com/getAllAnswers", {
+// 	"method": "POST",
+// 	"headers": {
+// 		"x-rapidapi-host": "StackOverflowstefan-skliarovV1.p.rapidapi.com",
+// 		"x-rapidapi-key": "db25511fd0msh61068917cdb3be5p18c83ajsn1102ec281d8e",
+// 		"content-type": "application/x-www-form-urlencoded"
+// 	},
+// 	"body": {}
+// })
+// .then(response => {
+// 	console.log(response);
+// })
+// .catch(err => {
+// 	console.log(err);
+// });
+// const body = await response.json();
+//   console.log(body);
+// }
 
 
 export default Resources;
