@@ -12,10 +12,10 @@ Manage Task Tracking, Communication, and Resources in One App!
 
 If you would like to contribute please create an issue. Alternatively, clone this repo and make modifications to your copy.
 
-## Installation
+# Installation
 npm i, npm run seed
 
-## Usage
+# Usage
 npm start
 
 # Authors
