@@ -8,7 +8,10 @@ Manage Task Tracking, Communication, and Resources in One App!
 
 ![Snapshot of Deployed Version](/4corners.JPG)
 
-# Contribution
+## Technologies
+MongoDB, Firebase chat, Drag-and-Drop, Youtube API, Github API
+
+## Contribution
 
 If you would like to contribute please create an issue. Alternatively, clone this repo and make modifications to your copy.
 
@@ -18,7 +21,7 @@ npm i, npm run seed
 ## Usage
 npm start
 
-# Authors
+## Authors
 
 * Daria Tharmaranan, Github: edithdaria
 <img alt="Daria Tharmaranan" src="https://avatars.githubusercontent.com/edithdaria?s=200" width="200" height="200">
